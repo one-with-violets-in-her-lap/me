@@ -1,0 +1,24 @@
+{
+    "singleQuote": true,
+    "tabWidth": 4,
+    "semi": false,
+    "arrowParens": "avoid",
+    "printWidth": 86,
+
+    "overrides": [
+        {
+            "files": "*.svg",
+            "options": {
+                "parser": "html"
+            }
+        },
+        {
+            "files": "*.astro",
+            "options": {
+                "parser": "astro"
+            }
+        }
+    ],
+
+    "plugins": ["prettier-plugin-astro"]
+}

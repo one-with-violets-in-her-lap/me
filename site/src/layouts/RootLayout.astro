@@ -3,14 +3,23 @@ import '@/assets/styles/global.css'
 ---
 
 <html lang="en" class="dark">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>*</title>
-	</head>
-	<body>
-		<slot/>
-	</body>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>*</title>
+    </head>
+    <body class="noise-bg">
+        <div class="relative">
+            <slot />
+        </div>
+    </body>
 </html>
+
+<style>
+    .noise-bg {
+        background-image: url('@/assets/images/noise.png');
+        background-repeat: repeat;
+    }
+</style>
