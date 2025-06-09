@@ -5,6 +5,8 @@ import { defineConfig } from 'astro/config'
 
 import react from '@astrojs/react'
 
+import { customRouting } from '@inox-tools/custom-routing';
+
 // https://astro.build/config
 export default defineConfig({
     vite: {
@@ -16,5 +18,7 @@ export default defineConfig({
         },
     },
 
-    integrations: [react()],
+    integrations: [react(), customRouting({
+        '/': './src/pages/index.astro'
+    })],
 })

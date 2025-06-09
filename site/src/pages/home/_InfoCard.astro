@@ -1,0 +1,130 @@
+---
+import ghostImage from '@/assets/images/ghost.png'
+
+import { Button } from '@/components/ui/button'
+import { Image } from 'astro:assets'
+import {
+    GithubIcon,
+    MailIcon,
+    MinusIcon,
+    MusicIcon,
+    SquareIcon,
+    TwitterIcon,
+    XIcon,
+} from 'lucide-react'
+---
+
+<div
+    class="absolute top-1/2 -translate-1/2 left-1/2 group max-w-[400px] min-w-70 w-full max-lg:top-2/4"
+>
+    <div
+        class="absolute w-full h-full bg-background/30 border backdrop-blur-xl rounded-xl transition-all duration-300 -left-5 -bottom-5 group-hover:-left-3 group-hover:-bottom-3"
+    >
+    </div>
+
+    <div
+        class="relative p-8 max-sm:p-4 w-full bg-background/40 border backdrop-blur-xl rounded-xl font-mono text-lg"
+    >
+        <header class="flex items-center gap-x-4.5 mb-3.5">
+            <div
+                class="bg-foreground/3 border rounded-lg w-16 h-16 flex items-center gap-x-3 justify-center"
+            >
+                <Image
+                    src={ghostImage}
+                    alt="Ghost pixel art"
+                    width={54}
+                    height={43}
+                    class="h-8 w-10"
+                />
+            </div>
+
+            <dl>
+                <dt class="inline font-bold">Status:</dt>
+
+                <dd class="inline">sleeping</dd>
+            </dl>
+        </header>
+
+        <dl class="mb-6">
+            <div class="mb-2">
+                <dt class="inline font-bold">Health:</dt>
+
+                <dd class="inline">54/100</dd>
+            </div>
+
+            <div>
+                <dt class="inline font-bold">Age:</dt>
+
+                <dd class="inline">20</dd>
+            </div>
+        </dl>
+
+        <div
+            class="bg-foreground/3 border rounded-lg w-full p-3 flex items-center gap-x-3.5 mb-3"
+        >
+            <MusicIcon strokeWidth={1} />
+            Hanatarash - 9 is 6
+        </div>
+
+        <div class="flex items-center gap-x-2">
+            <a
+                target="_blank"
+                href="https://github.com/one-with-violets-in-her-lap"
+                aria-label="Github profile"
+            >
+                <Button
+                    size="icon"
+                    variant="outline"
+                    className="hover:cursor-pointer"
+                    aria-label="Open Github"
+                >
+                    <GithubIcon />
+                </Button>
+            </a>
+
+            <a
+                target="_blank"
+                href="https://twitter.com/strawmans"
+                aria-label="Twitter profile"
+            >
+                <Button
+                    size="icon"
+                    variant="outline"
+                    className="hover:cursor-pointer"
+                    aria-label="Open Twitter"
+                >
+                    <TwitterIcon />
+                </Button>
+            </a>
+
+            <a
+                target="_blank"
+                href="mailto:sleep.posted514@passinbox.com"
+                aria-label="Mail"
+            >
+                <Button
+                    size="icon"
+                    variant="outline"
+                    className="hover:cursor-pointer"
+                    aria-label="Open mail"
+                >
+                    <MailIcon />
+                </Button>
+            </a>
+        </div>
+
+        <div class="absolute top-2 right-2 flex items-center gap-x-1">
+            <Button size="icon" variant="ghost" className="w-6 h-6">
+                <MinusIcon />
+            </Button>
+
+            <Button size="icon" variant="ghost" className="w-6 h-6">
+                <SquareIcon />
+            </Button>
+
+            <Button size="icon" variant="ghost" className="w-6 h-6">
+                <XIcon />
+            </Button>
+        </div>
+    </div>
+</div>
