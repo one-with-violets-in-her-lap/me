@@ -1,8 +1,15 @@
 ---
 import blinkingEyeGif from '@/assets/images/blinking-eye.gif'
 import handImage from '@/assets/images/hand.jpg'
+import ghostImage from '@/assets/images/ghost.png'
 
-import { MessageCircleIcon } from 'lucide-react'
+import {
+    GithubIcon,
+    MailIcon,
+    MessageCircleIcon,
+    MusicIcon,
+    TwitterIcon,
+} from 'lucide-react'
 import RootLayout from '@/layouts/RootLayout.astro'
 import { Button } from '@/components/ui/button'
 import { Image } from 'astro:assets'
@@ -45,12 +52,107 @@ import { Image } from 'astro:assets'
                 <Image
                     src={handImage}
                     class="rounded-xl w-full h-[58%] object-cover object-bottom-left brightness-[0.5] max-lg:h-auto"
+                    loading="eager"
                     alt="A hand"
                 />
 
+                <!-- Spotlight effect -->
                 <div
                     class="absolute -bottom-0 -left-50 bg-red-100/50 w-[500px] h-[559px] rounded-full blur-[250px] max-lg:top-1/2 max-lg:-translate-y-1/2 max-lg:right-0 max-lg:left-auto"
                 >
+                </div>
+
+                <div
+                    class="absolute top-1/2 -translate-1/2 left-1/2 group max-w-[400px] w-full"
+                >
+                    <div
+                        class="absolute p-5 w-full h-full bg-background/30 border backdrop-blur-xl rounded-xl transition-all duration-300 -left-5 -bottom-5 group-hover:-left-3 group-hover:-bottom-3"
+                    >
+                    </div>
+
+                    <div
+                        class="p-5 w-full bg-background/40 border backdrop-blur-xl rounded-xl font-mono"
+                    >
+                        <header class="flex items-center gap-x-4.5 mb-3.5">
+                            <div
+                                class="bg-foreground/3 border rounded-lg w-16 h-16 flex items-center gap-x-3 justify-center"
+                            >
+                                <Image
+                                    src={ghostImage}
+                                    alt="Ghost pixel art"
+                                    width={54}
+                                    height={43}
+                                    class="h-8 w-10"
+                                />
+                            </div>
+
+                            <dl>
+                                <dt class="inline font-bold">Status:</dt>
+
+                                <dd class="inline">sleeping</dd>
+                            </dl>
+                        </header>
+
+                        <dl class="mb-6">
+                            <div class="mb-2">
+                                <dt class="inline font-bold">Health:</dt>
+
+                                <dd class="inline">54/100</dd>
+                            </div>
+
+                            <div>
+                                <dt class="inline font-bold">Age:</dt>
+
+                                <dd class="inline">20</dd>
+                            </div>
+                        </dl>
+
+                        <div
+                            class="bg-foreground/3 border rounded-lg w-full p-3 flex items-center gap-x-3.5 mb-3"
+                        >
+                            <MusicIcon strokeWidth={1} />
+                            Hanatarash - 9 is 6
+                        </div>
+
+                        <div class="flex items-center gap-x-2">
+                            <a
+                                target="_blank"
+                                href="https://github.com/one-with-violets-in-her-lap"
+                                aria-label="Github profile"
+                            >
+                                <Button
+                                    size="icon"
+                                    variant="outline"
+                                    className="hover:cursor-pointer"
+                                    aria-label="Open Github"
+                                >
+                                    <GithubIcon />
+                                </Button>
+                            </a>
+
+                            <a target="_blank" href="https://twitter.com/strawmans" aria-label="Twitter profile">
+                                <Button
+                                    size="icon"
+                                    variant="outline"
+                                    className="hover:cursor-pointer"
+                                    aria-label="Open Twitter"
+                                >
+                                    <TwitterIcon />
+                                </Button>
+                            </a>
+
+                            <a target="_blank" href="mailto:sleep.posted514@passinbox.com" aria-label="Mail">
+                                <Button
+                                    size="icon"
+                                    variant="outline"
+                                    className="hover:cursor-pointer"
+                                    aria-label="Open mail"
+                                >
+                                    <MailIcon />
+                                </Button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
