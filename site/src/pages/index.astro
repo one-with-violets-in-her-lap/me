@@ -1,16 +1,14 @@
 ---
-
+import RootLayout from '@/layouts/root-layout.astro'
+import { Button } from '@/components/ui/button'
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<RootLayout>
+	<div class="p-40">
+		<h1 class="mb-2 font-bold text-5xl mb-14">Remaking my website again</h1>
+
+		<Button>
+			Waste my time
+		</Button>
+	</div>
+</RootLayout>
