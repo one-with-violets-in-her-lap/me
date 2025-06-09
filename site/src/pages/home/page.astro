@@ -2,26 +2,18 @@
 import blinkingEyeGif from '@/assets/images/blinking-eye.gif'
 import handImage from '@/assets/images/hand.jpg'
 
-import {
-    GithubIcon,
-    MailIcon,
-    MessageCircleIcon,
-    MinusIcon,
-    MusicIcon,
-    SquareIcon,
-    TwitterIcon,
-    XIcon,
-} from 'lucide-react'
+import { MessageCircleIcon } from 'lucide-react'
 import RootLayout from '@/layouts/RootLayout.astro'
 import { Button } from '@/components/ui/button'
 import { Image } from 'astro:assets'
 import InfoCard from '@/pages/home/_InfoCard.astro'
+import PostsSection from '@/pages/home/_PostsSection.astro'
 ---
 
 <RootLayout>
     <main>
         <section
-            class="px-18 grid grid-cols-[1fr_minmax(500px,1fr)] items-start gap-x-10 justify-start h-screen pb-10 max-lg:h-auto max-lg:px-10 max-lg:flex max-lg:flex-col max-lg:gap-y-10"
+            class="mb-12 px-18 grid grid-cols-[1fr_minmax(500px,1fr)] items-start gap-x-10 justify-start h-screen pb-10 max-lg:h-auto max-lg:px-10 max-lg:flex max-lg:flex-col max-lg:gap-y-10"
         >
             <div class="pt-18">
                 <h1
@@ -37,7 +29,7 @@ import InfoCard from '@/pages/home/_InfoCard.astro'
                 </p>
 
                 <div class="flex items-center gap-x-3">
-                    <Button className="px-7"> View </Button>
+                    <a href="#posts"><Button className="px-7"> View </Button></a>
 
                     <Button variant="outline"> <MessageCircleIcon /> Contact </Button>
                 </div>
@@ -68,5 +60,7 @@ import InfoCard from '@/pages/home/_InfoCard.astro'
                 <InfoCard />
             </div>
         </section>
+
+        <PostsSection />
     </main>
 </RootLayout>
