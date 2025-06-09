@@ -5,7 +5,7 @@ import { defineConfig } from 'astro/config'
 
 import react from '@astrojs/react'
 
-import { customRouting } from '@inox-tools/custom-routing';
+import { customRouting } from '@inox-tools/custom-routing'
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,7 +18,10 @@ export default defineConfig({
         },
     },
 
-    integrations: [react(), customRouting({
-        '/': './src/pages/index.astro'
-    })],
+    integrations: [
+        react(),
+        customRouting({
+            '/': './src/pages/home/page.astro',
+        }),
+    ],
 })
