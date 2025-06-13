@@ -1,3 +1,9 @@
+---
+import { contentApiClient } from '@/lib/content'
+
+const { data, meta } = await contentApiClient.fetchPosts()
+---
+
 <section id="posts" class="p-18">
     <h2
         class="scroll-m-20 text-start text-6xl max-w-lg max-xl:text-4xl font-extrabold tracking-tight mb-10 text-balance"
@@ -9,7 +15,7 @@
         <article class="relative bg-accent/20 min-h-28 border p-5 rounded-lg">
             <div class="text-muted-foreground text-sm mb-1">@vet _ 2025-03-12</div>
 
-            Life goal #1: take a photo of a dog
+            {data.map(post => <div>{post.content}</div>)}
 
             <svg
                 class="absolute right-2 -bottom-2"
