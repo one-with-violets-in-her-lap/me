@@ -8,8 +8,30 @@ interface Props {
 const { photo } = Astro.props
 ---
 
-<img
-    class="rounded-lg not-first:mt-8 aspect-video object-cover max-w-xl shadow-2xl shadow-black/70"
-    alt={photo.image.url ?? photo.name ?? photo.description}
-    src={import.meta.env.PUBLIC_STRAPI_CMS_BASE_URL + photo.image.url}
-/>
+<div
+    class="not-first:mt-8 bg-background relative rounded-xl overflow-hidden shadow-[0px_0px_50px_0px] shadow-foreground/40 max-w-xl"
+>
+    <img
+        class="aspect-video object-cover w-full"
+        alt={photo.image.url ?? photo.name ?? photo.description}
+        src={import.meta.env.PUBLIC_STRAPI_CMS_BASE_URL + photo.image.url}
+    />
+
+    <div
+        class="absolute top-0 left-0 w-0.5 h-full bg-foreground/60 backdrop-blur-[100px]"
+    >
+    </div>
+    <div
+        class="absolute top-0 right-0 w-0.5 h-full bg-foreground/60 backdrop-blur-[100px]"
+    >
+    </div>
+
+    <div
+        class="absolute bottom-0 left-0 w-full h-0.5 bg-foreground/60 backdrop-blur-[100px]"
+    >
+    </div>
+    <div
+        class="absolute top-0 left-0 w-full h-0.5 bg-foreground/60 backdrop-blur-[100px]"
+    >
+    </div>
+</div>
