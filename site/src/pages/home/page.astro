@@ -36,7 +36,7 @@ import PostsSection from '@/pages/home/_posts-section.astro'
             </div>
 
             <div
-                class="relative h-full max-h-screen flex flex-col gap-y-[3%] gap-x-5 max-lg:max-w-xl max-lg:gap-y-5 max-lg:max-h-auto max-lg:h-auto"
+                class="relative h-full max-h-screen flex flex-col gap-y-[3%] gap-x-5 max-lg:max-w-xl max-lg:gap-y-5 max-lg:max-h-fit max-lg:h-fit"
             >
                 <Image
                     src={blinkingEyeGif}
@@ -46,7 +46,7 @@ import PostsSection from '@/pages/home/_posts-section.astro'
 
                 <Image
                     src={handImage}
-                    class="rounded-xl w-full h-[58%] object-cover object-bottom-left brightness-[0.5] max-lg:h-auto"
+                    class="rounded-xl w-full h-[58%] object-cover object-bottom-left brightness-[0.5] shrink"
                     loading="eager"
                     alt="A hand"
                 />
