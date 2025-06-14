@@ -1,8 +1,8 @@
 ---
 import { contentApiClient } from '@/lib/content'
-import PostCard from '@/pages/home/_PostCard.astro'
+import PostCard from '@/pages/home/_post-card.astro'
 
-const { data, meta } = await contentApiClient.fetchPosts()
+const { data } = await contentApiClient.fetchPosts()
 ---
 
 <section id="posts" class="p-18">
