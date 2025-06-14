@@ -2,6 +2,7 @@
 import type { Post } from '@/lib/content'
 import MarkdownContent from '@/components/markdown-content.astro'
 import PhotoCard from '@/components/photo-card.astro'
+import SongCard from '@/components/song-card.astro'
 
 interface Props {
     post: Post
@@ -29,6 +30,8 @@ const { post } = Astro.props
     </div>
 
     {post.photo && <PhotoCard photo={post.photo} />}
+
+    {post.song && <SongCard song={post.song} />}
 
     <svg
         class="absolute right-2 -bottom-2"

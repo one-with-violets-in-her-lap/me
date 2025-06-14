@@ -1,0 +1,31 @@
+---
+import { Button } from '@/components/ui/button'
+import type { Song } from '@/lib/content'
+
+interface Props {
+    song: Song
+}
+
+const { song } = Astro.props
+---
+
+<article class="not-first:mt-8 border-y p-4 flex items-stretch gap-x-7">
+    <div class="w-26 h-26 bg-accent rounded-lg"></div>
+
+    <div class="flex flex-col">
+        <h3 class="scroll-m-20 mb-1.5 text-base font-semibold tracking-tight">
+            {song.name}
+        </h3>
+
+        <div class="text-muted-foreground text-xs mb-4">
+            {song.bitrateKbps} kbps _ {song.secondsDuration} seconds
+        </div>
+
+        <a target="_blank" href={import.meta.env.PUBLIC_STRAPI_CMS_BASE_URL + song.audioFile.url}>
+            <Button size="sm" className="mt-auto w-fit hover:cursor-pointer" variant="outline">
+                <span>|></span>
+                <span>Play</span>
+            </Button>
+        </a>
+    </div>
+</article>
