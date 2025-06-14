@@ -1,14 +1,12 @@
 ---
-import { marked } from 'marked'
 import type { Post } from '@/lib/content'
+import MarkdownContent from '@/components/markdown-content.astro'
 
 interface Props {
     post: Post
 }
 
 const { post } = Astro.props
-
-const htmlContent = await marked(post.content)
 ---
 
 <article class="relative bg-accent/20 min-h-28 border p-5 rounded-lg">
@@ -25,7 +23,9 @@ const htmlContent = await marked(post.content)
         </time>
     </div>
 
-    <div set:html={htmlContent} class="max-w-xl" />
+    <div class="max-w-xl">
+        <MarkdownContent markdown={post.content} />
+    </div>
 
     <svg
         class="absolute right-2 -bottom-2"

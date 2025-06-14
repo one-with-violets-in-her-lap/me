@@ -1,0 +1,19 @@
+---
+import { marked } from 'marked'
+
+interface Props {
+    markdown: string
+}
+
+const htmlContent = await marked(Astro.props.markdown)
+---
+
+<div class="prose dark:prose-invert prose-neutral markdown-content" set:html={htmlContent} />
+
+<style is:global>
+    @layer base {
+        .markdown-content img {
+            max-height: 280px;
+        }
+    }
+</style>
