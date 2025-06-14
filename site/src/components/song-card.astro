@@ -15,18 +15,24 @@ const { song } = Astro.props
 
 <article class="not-first:mt-8 border-y p-4 flex items-stretch gap-x-7">
     {
-        song.thumbnail && (
+        song.thumbnail ? (
             <img
-                class="w-26 h-26 bg-accent rounded-lg"
-                src={song.thumbnail.url}
+                class="w-26 h-26 object-cover bg-accent rounded-lg shadow-2xl shadow-black/20"
+                src={import.meta.env.PUBLIC_STRAPI_CMS_BASE_URL + song.thumbnail.url}
                 alt={`Song thumbnail - ${song.thumbnail.alternativeText || song.name}`}
             />
+        ) : (
+            <div class="w-26 h-26 bg-accent rounded-lg flex items-center justify-center">
+                <Image
+                    src={musicNoteImage}
+                    alt="Test"
+                    height={128}
+                    width={128}
+                    class="w-18 h-18 opacity-20"
+                />
+            </div>
         )
     }
-
-    <div class="w-26 h-26 bg-accent rounded-lg flex items-center justify-center">
-        <Image src={musicNoteImage} alt="Test" height={128} width={128} class="w-18 h-18 opacity-20" />
-    </div>
 
     <div class="flex flex-col">
         <h3 class="scroll-m-20 mb-1.5 text-base font-semibold tracking-tight">
