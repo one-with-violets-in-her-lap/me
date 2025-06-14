@@ -19,6 +19,11 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::photo.photo"
+    },
+    "song": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::song.song"
     }
   }
 }
