@@ -1,6 +1,6 @@
 import type { API } from '@strapi/client'
 
-export interface StrapiImage extends API.Document {
+export interface StrapiImage {
     alternativeText: string | null
     caption: string | null
     width: number

@@ -13,7 +13,9 @@ const htmlContent = await marked(Astro.props.markdown)
 <style is:global>
     @layer base {
         .markdown-content img {
-            max-height: 280px;
+            max-height: var(--container-xs);
+            border-radius: var(--radius-lg);
+            box-shadow: 0px 0px 30px 1px var(--color-black/70);
         }
     }
 </style>

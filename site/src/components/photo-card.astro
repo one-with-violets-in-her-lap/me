@@ -1,0 +1,15 @@
+---
+import type { Photo } from '@/lib/content'
+
+interface Props {
+    photo: Photo
+}
+
+const { photo } = Astro.props
+---
+
+<img
+    class="rounded-lg not-first:mt-8 aspect-video object-cover max-w-xl shadow-2xl shadow-black/70"
+    alt={photo.image.url ?? photo.name ?? photo.description}
+    src={import.meta.env.PUBLIC_STRAPI_CMS_BASE_URL + photo.image.url}
+/>
