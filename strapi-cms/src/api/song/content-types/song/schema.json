@@ -23,9 +23,7 @@
       "multiple": false,
       "required": true,
       "allowedTypes": [
-        "images",
         "files",
-        "videos",
         "audios"
       ]
     },
@@ -34,9 +32,7 @@
       "multiple": false,
       "allowedTypes": [
         "images",
-        "files",
-        "videos",
-        "audios"
+        "files"
       ]
     },
     "secondsDuration": {
