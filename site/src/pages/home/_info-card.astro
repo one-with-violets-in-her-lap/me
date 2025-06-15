@@ -18,12 +18,14 @@ import {
     class="absolute top-1/2 -translate-1/2 left-1/2 group max-w-[400px] min-w-70 w-full max-lg:top-2/4"
 >
     <div
-        class="absolute w-full h-full bg-background/30 border backdrop-blur-xl rounded-xl transition-all duration-300 -left-5 -bottom-5 group-hover:-left-3 group-hover:-bottom-3"
+        id="infoCardUnderLayer"
+        class="absolute w-full h-full bg-background/30 border backdrop-blur-xl rounded-xl -left-5 -bottom-5 transform-[scale(0)]"
     >
     </div>
 
     <div
-        class="relative p-8 max-sm:p-4 w-full bg-background/40 border backdrop-blur-xl rounded-xl font-mono text-lg"
+        id="infoCard"
+        class="relative p-8 max-sm:p-4 w-full bg-background/40 border backdrop-blur-xl rounded-xl font-mono text-lg transform-[scale(0)]"
     >
         <header class="flex items-center gap-x-4.5 mb-3.5">
             <div
@@ -128,3 +130,23 @@ import {
         </div>
     </div>
 </div>
+
+<script>
+    import { animate } from 'motion'
+
+    animate(
+        '#infoCardUnderLayer',
+        {
+            scale: 1,
+        },
+        { duration: 0.2, type: 'spring', delay: 0.6 },
+    )
+
+    animate(
+        '#infoCard',
+        {
+            scale: 1,
+        },
+        { duration: 0.4, type: 'spring', delay: 0.64 },
+    )
+</script>
