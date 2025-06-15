@@ -13,16 +13,16 @@ interface Props {
 const { song } = Astro.props
 ---
 
-<article class="not-first:mt-8 border-y p-4 flex items-stretch gap-x-7">
+<article class="not-first:mt-8 border-y p-4 flex items-stretch gap-x-7 max-md:gap-x-5 max-sm:px-0">
     {
         song.thumbnail ? (
             <img
-                class="w-26 h-26 object-cover bg-accent rounded-lg shadow-2xl shadow-black/20"
+                class="w-26 h-26 max-sm:w-18 max-sm:h-18 shrink-0 object-cover bg-accent rounded-lg shadow-2xl shadow-black/20"
                 src={import.meta.env.PUBLIC_STRAPI_CMS_BASE_URL + song.thumbnail.url}
                 alt={`Song thumbnail - ${song.thumbnail.alternativeText || song.name}`}
             />
         ) : (
-            <div class="w-26 h-26 bg-accent rounded-lg flex items-center justify-center">
+            <div class="w-26 h-26 max-sm:w-18 max-sm:h-18 shrink-0 bg-accent rounded-lg flex items-center justify-center">
                 <Image
                     src={musicNoteImage}
                     alt="Test"
