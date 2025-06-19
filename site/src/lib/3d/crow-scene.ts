@@ -118,7 +118,7 @@ export class Crow3dObject {
 
                 const newMaterial = new THREE.MeshStandardMaterial({
                     color: 0xffffff,
-                    metalness: 0.6,
+                    metalness: 1.2,
                 })
 
                 // If the original material had a map (texture), reapply it
@@ -156,7 +156,7 @@ export class Crow3dObject {
         this.mixer.timeScale = -1
         this.mixer.setTime(0.2)
 
-        animate(gltfModel.scene.position, { x: 2, z: 0 }, { duration: 3 })
+        animate(gltfModel.scene.position, { x: 1.5, z: 0 }, { duration: 3 })
 
         animate(
             gltfModel.scene.position,
@@ -167,7 +167,7 @@ export class Crow3dObject {
                 onComplete: () => {
                     animate(
                         gltfModel.scene.rotation,
-                        { y: 0.3, x: 0 },
+                        { y: 0.6, x: 0 },
                         { duration: 0.3 },
                     )
                 },
