@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import { GLTFLoader, OrbitControls } from 'three/examples/jsm/Addons.js'
 import { Crow3dObject } from './crow'
+import { animate, type AnimationPlaybackControlsWithThen } from 'motion'
 
 export class Crow3dScene {
     private readonly clock: THREE.Clock
@@ -89,10 +90,17 @@ export class Crow3dScene {
     private moveCameraAccordingToMousePosition(x: number) {
         const middleX = window.innerWidth / 2
 
-        const xMultiplier = -(middleX - x) / middleX
+        const xMultiplier = (middleX - x) / middleX
 
-        this.camera.position.x = 3 * xMultiplier
-        this.camera.position.z = THREE.MathUtils.clamp(6 * xMultiplier, 6, 8)
+        animate(
+            this.camera.position,
+            {
+                x: 2 * xMultiplier,
+                z: THREE.MathUtils.clamp(6 * xMultiplier, 6, 9),
+                y: 1 * xMultiplier
+            },
+            { mass: 0.6 },
+        )
     }
 }
 
