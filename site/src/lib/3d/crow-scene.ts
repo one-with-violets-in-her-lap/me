@@ -72,6 +72,13 @@ export class Crow3dScene {
         const crowModel = await this.crow.initialize()
         this.scene.add(crowModel.scene)
 
+        document.addEventListener('mousemove', event =>
+            this.moveCameraAccordingToMousePosition(event.pageX),
+        )
+        document.addEventListener('touchmove', event =>
+            this.moveCameraAccordingToMousePosition(event.touches[0].pageX),
+        )
+
         this.renderer.setAnimationLoop(() => {
             const deltaTime = this.clock.getDelta()
 
@@ -80,6 +87,15 @@ export class Crow3dScene {
             this.controls.update()
             this.renderer.render(this.scene, this.camera)
         })
+    }
+
+    private moveCameraAccordingToMousePosition(x: number) {
+        const middleX = window.innerWidth / 2
+
+        const xMultiplier = -(middleX - x) / middleX
+
+        this.camera.position.x = 3 * xMultiplier
+        this.camera.position.z = THREE.MathUtils.clamp(6 * xMultiplier, 6, 8)
     }
 }
 
