@@ -1,7 +1,6 @@
 ---
 import ghostImage from '@/assets/images/ghost.png'
 
-import { Button } from '@/components/ui/button'
 import { Image } from 'astro:assets'
 import {
     GithubIcon,
@@ -12,6 +11,7 @@ import {
     TwitterIcon,
     XIcon,
 } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 ---
 
 <div
@@ -139,7 +139,7 @@ import {
         {
             scale: 1,
         },
-        { duration: 0.2, type: 'spring', delay: 0.6 },
+        { duration: 0.2, delay: 0.6 },
     )
 
     animate(

@@ -8,7 +8,10 @@ interface Props {
 const htmlContent = await marked(Astro.props.markdown)
 ---
 
-<div class="prose dark:prose-invert prose-neutral markdown-content" set:html={htmlContent} />
+<div
+    class="prose dark:prose-invert prose-neutral markdown-content"
+    set:html={htmlContent}
+/>
 
 <style is:global>
     @layer base {

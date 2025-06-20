@@ -1,7 +1,6 @@
 ---
 import musicNoteImage from '@/assets/images/music-note.png'
 
-import { Music2Icon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import type { Song } from '@/lib/content'
 import { Image } from 'astro:assets'
@@ -13,7 +12,9 @@ interface Props {
 const { song } = Astro.props
 ---
 
-<article class="not-first:mt-8 border-y p-4 flex items-stretch gap-x-7 max-md:gap-x-5 max-sm:px-0">
+<article
+    class="not-first:mt-8 border-y p-4 flex items-stretch gap-x-7 max-md:gap-x-5 max-sm:px-0"
+>
     {
         song.thumbnail ? (
             <img

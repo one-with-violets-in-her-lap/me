@@ -11,7 +11,9 @@ interface Props {
 const { post } = Astro.props
 ---
 
-<article class="relative bg-accent/20 min-h-28 border p-5 rounded-lg not-last:mb-20 max-sm:px-4">
+<article
+    class="relative bg-accent/20 min-h-28 border p-5 rounded-lg not-last:mb-20 max-sm:px-4"
+>
     <div class="text-muted-foreground text-sm mb-5">
         @vet _{' '}
         <time datetime={post.createdAt}>
