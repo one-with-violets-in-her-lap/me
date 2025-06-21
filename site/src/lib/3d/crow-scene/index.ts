@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import { GLTFLoader, OrbitControls } from 'three/examples/jsm/Addons.js'
 import { Crow3dObject } from './crow'
-import { animate, type AnimationPlaybackControlsWithThen } from 'motion'
+import { animate } from 'motion'
 
 export class Crow3dScene {
     private readonly clock: THREE.Clock
@@ -97,7 +97,7 @@ export class Crow3dScene {
             {
                 x: 2 * xMultiplier,
                 z: THREE.MathUtils.clamp(6 * xMultiplier, 6, 9),
-                y: 1 * xMultiplier
+                y: 1 * xMultiplier,
             },
             { mass: 0.6 },
         )
