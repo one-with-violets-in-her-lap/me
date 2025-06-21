@@ -13,8 +13,9 @@ const { photo } = Astro.props
 >
     <img
         class="aspect-video object-cover w-full"
-        alt={photo.image.url ?? photo.name ?? photo.description}
-        src={import.meta.env.PUBLIC_STRAPI_CMS_BASE_URL + photo.image.url}
+        alt={photo.image.alternativeText ?? photo.name ?? photo.description}
+        src={import.meta.env.PUBLIC_STRAPI_CMS_BASE_URL +
+            photo.image.formats.medium.url}
     />
 
     <div
