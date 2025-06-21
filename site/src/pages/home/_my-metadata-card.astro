@@ -13,12 +13,14 @@ import {
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import type { MyMetadata } from '@/lib/content'
+import type { LastFmTrack } from '@/lib/last-fm'
 
 interface Props {
     metadata: MyMetadata
+    lastTrackListened: LastFmTrack | null
 }
 
-const { metadata } = Astro.props
+const { metadata, lastTrackListened } = Astro.props
 ---
 
 <div
@@ -68,12 +70,16 @@ const { metadata } = Astro.props
             </div>
         </dl>
 
-        <div
-            class="border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 rounded-md w-full p-3 flex items-center gap-x-3.5 mb-3"
-        >
-            <MusicIcon strokeWidth={1} />
-            Hanatarash - 9 is 6
-        </div>
+        {
+            lastTrackListened && (
+                <a href={lastTrackListened.url} target="_blank">
+                    <div class="text-sm border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 rounded-md w-full p-3 flex items-center gap-x-3.5 mb-3">
+                        <MusicIcon strokeWidth={1} className="shrink-0" />
+                        {lastTrackListened.artist['#text']} - {lastTrackListened.name}
+                    </div>
+                </a>
+            )
+        }
 
         <div class="flex items-center gap-x-2">
             <a

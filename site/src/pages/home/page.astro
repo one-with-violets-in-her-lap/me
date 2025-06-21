@@ -9,8 +9,13 @@ import PostsSection from '@/pages/home/_posts-section.astro'
 import Scene3d from '@/pages/home/_scene-3d.astro'
 import MyMetadataCard from '@/pages/home/_my-metadata-card.astro'
 import { contentApiClient } from '@/lib/content'
+import { lastFmClient } from '@/lib/last-fm'
 
 const myMetadataResponse = await contentApiClient.fetchMyMetadata()
+const lastTrackListened = await lastFmClient.fetchLastTrack(
+    import.meta.env.LAST_FM_USERNAME,
+    import.meta.env.LAST_FM_API_KEY,
+)
 ---
 
 <RootLayout>
@@ -62,7 +67,10 @@ const myMetadataResponse = await contentApiClient.fetchMyMetadata()
                 >
                 </div>
 
-                <MyMetadataCard metadata={myMetadataResponse.data} />
+                <MyMetadataCard
+                    metadata={myMetadataResponse.data}
+                    {lastTrackListened}
+                />
             </div>
         </section>
 
