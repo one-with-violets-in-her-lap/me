@@ -65,6 +65,8 @@ const lastTrackListened = await lastFmClient.fetchLastTrack(
                     src={handImage}
                     class="rounded-xl w-full h-[58%] object-cover object-bottom-left brightness-[0.5] shrink"
                     loading="eager"
+                    fetchpriority="high"
+                    decoding="sync"
                     alt="A hand"
                 />
 
