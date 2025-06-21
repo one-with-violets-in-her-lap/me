@@ -1,5 +1,11 @@
 import { strapi, type API } from '@strapi/client'
-import type { StrapiDocument, StrapiImage, StrapiMedia } from '@/lib/strapi-utils'
+import type { StrapiDocument, StrapiImage, StrapiMedia } from '@/lib/utils/strapi'
+
+export interface MyMetadata extends StrapiDocument {
+    personStatus: 'sleeping' | 'taking a walk' | 'online' | 'self-loathing'
+    health: number
+    age: number
+}
 
 export interface Post extends StrapiDocument {
     content: string
@@ -33,5 +39,11 @@ export const contentApiClient = {
         return (await strapiClient.collection('posts').find({
             populate: ['photo.image', 'song.audioFile', 'song.thumbnail'],
         })) as API.DocumentResponseCollection<Post>
+    },
+
+    async fetchMyMetadata() {
+        return (await strapiClient
+            .single('metadata')
+            .find()) as API.DocumentResponse<MyMetadata>
     },
 }

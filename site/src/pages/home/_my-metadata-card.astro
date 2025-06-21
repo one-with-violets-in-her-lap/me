@@ -12,6 +12,13 @@ import {
     XIcon,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import type { MyMetadata } from '@/lib/content'
+
+interface Props {
+    metadata: MyMetadata
+}
+
+const { metadata } = Astro.props
 ---
 
 <div
@@ -43,7 +50,7 @@ import { Button } from '@/components/ui/button'
             <dl>
                 <dt class="inline font-bold">Status:</dt>
 
-                <dd class="inline">sleeping</dd>
+                <dd class="inline">{metadata.personStatus}</dd>
             </dl>
         </header>
 
@@ -51,13 +58,13 @@ import { Button } from '@/components/ui/button'
             <div class="mb-2">
                 <dt class="inline font-bold">Health:</dt>
 
-                <dd class="inline">54/100</dd>
+                <dd class="inline">{metadata.health}/100</dd>
             </div>
 
             <div>
                 <dt class="inline font-bold">Age:</dt>
 
-                <dd class="inline">20</dd>
+                <dd class="inline">{metadata.age}</dd>
             </div>
         </dl>
 
