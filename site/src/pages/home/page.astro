@@ -1,6 +1,6 @@
 ---
-import blinkingEyeGif from '@/assets/images/blinking-eye.gif'
 import handImage from '@/assets/images/hand.jpg'
+import blinkingEyeVideo from '@/assets/videos/blinking-eye.mp4'
 
 import RootLayout from '@/layouts/root-layout.astro'
 import { Button } from '@/components/ui/button'
@@ -12,7 +12,10 @@ import { contentApiClient } from '@/lib/content'
 import { lastFmClient } from '@/lib/last-fm'
 
 export const prerender = false
-Astro.response.headers.set('CDN-Cache-Control', 'public, max-age=180, must-revalidate');
+Astro.response.headers.set(
+    'CDN-Cache-Control',
+    'public, max-age=180, must-revalidate',
+)
 
 const myMetadataResponse = await contentApiClient.fetchMyMetadata()
 const lastTrackListened = await lastFmClient.fetchLastTrack(
@@ -51,11 +54,12 @@ const lastTrackListened = await lastFmClient.fetchLastTrack(
             <div
                 class="relative h-full max-h-screen flex flex-col gap-y-[3%] gap-x-5 max-lg:max-w-xl max-lg:gap-y-5 max-lg:max-h-fit max-lg:h-fit"
             >
-                <Image
-                    src={blinkingEyeGif}
+                <video
+                    src={blinkingEyeVideo}
                     class="rounded-b-xl w-full h-[37%] object-cover max-lg:rounded-xl max-lg:h-auto"
-                    alt="Blinking eye"
-                />
+                    loop
+                    muted
+                    autoplay></video>
 
                 <Image
                     src={handImage}
