@@ -11,6 +11,8 @@ import MyMetadataCard from '@/pages/home/_my-metadata-card.astro'
 import { contentApiClient } from '@/lib/content'
 import { lastFmClient } from '@/lib/last-fm'
 
+export const prerender = false
+
 const myMetadataResponse = await contentApiClient.fetchMyMetadata()
 const lastTrackListened = await lastFmClient.fetchLastTrack(
     import.meta.env.LAST_FM_USERNAME,
