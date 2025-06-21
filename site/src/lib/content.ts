@@ -31,7 +31,7 @@ export interface Song extends StrapiDocument {
 
 const strapiClient = strapi({
     baseURL: import.meta.env.PUBLIC_STRAPI_CMS_BASE_URL + '/api',
-    auth: import.meta.env.PUBLIC_STRAPI_API_TOKEN,
+    auth: import.meta.env.STRAPI_API_TOKEN,
 })
 
 export const contentApiClient = {
