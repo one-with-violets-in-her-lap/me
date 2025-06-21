@@ -12,6 +12,7 @@ import { contentApiClient } from '@/lib/content'
 import { lastFmClient } from '@/lib/last-fm'
 
 export const prerender = false
+Astro.response.headers.set('CDN-Cache-Control', 'public, max-age=180, must-revalidate');
 
 const myMetadataResponse = await contentApiClient.fetchMyMetadata()
 const lastTrackListened = await lastFmClient.fetchLastTrack(

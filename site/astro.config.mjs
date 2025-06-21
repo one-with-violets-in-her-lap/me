@@ -7,25 +7,27 @@ import react from '@astrojs/react'
 
 import { customRouting } from '@inox-tools/custom-routing'
 
-import netlify from '@astrojs/netlify';
+import netlify from '@astrojs/netlify'
 
 // https://astro.build/config
 export default defineConfig({
-  vite: {
-      plugins: [tailwindcss()],
-      resolve: {
-          alias: {
-              '@': fileURLToPath(new URL('./src', import.meta.url)),
-          },
-      },
-  },
+    vite: {
+        plugins: [tailwindcss()],
+        resolve: {
+            alias: {
+                '@': fileURLToPath(new URL('./src', import.meta.url)),
+            },
+        },
+    },
 
-  integrations: [
-      react(),
-      customRouting({
-          '/': './src/pages/home/page.astro',
-      }),
-  ],
+    integrations: [
+        react(),
+        customRouting({
+            '/': './src/pages/home/page.astro',
+        }),
+    ],
 
-  adapter: netlify(),
+    adapter: netlify({
+        cacheOnDemandPages: true,
+    }),
 })
