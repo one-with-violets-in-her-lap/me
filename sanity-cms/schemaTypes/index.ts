@@ -1,5 +1,5 @@
-import { galleryItemType } from './gallery-item'
+import { photoType } from './photo'
 import { postType } from './post'
 import { songType } from './song'
 
-export const schemaTypes = [galleryItemType, songType, postType]
+export const schemaTypes = [photoType, songType, postType]
