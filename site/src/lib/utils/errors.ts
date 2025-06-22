@@ -9,6 +9,8 @@ export class HttpResponseError extends Error {
     }
 }
 
+export class ContentClientError extends Error {}
+
 export class Scene3dError extends Error {}
 
 export class NotInitializedError extends Scene3dError {}

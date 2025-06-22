@@ -16,9 +16,9 @@ const { post } = Astro.props
 >
     <div class="text-muted-foreground text-sm mb-5">
         @vet _{' '}
-        <time datetime={post.createdAt}>
+        <time datetime={post._createdAt}>
             {
-                new Date(post.createdAt).toLocaleDateString('en-CA', {
+                new Date(post._createdAt).toLocaleDateString('en-CA', {
                     year: 'numeric',
                     day: '2-digit',
                     month: '2-digit',
@@ -28,7 +28,7 @@ const { post } = Astro.props
     </div>
 
     <div class="max-w-xl">
-        <MarkdownContent markdown={post.content} />
+        <MarkdownContent markdown={post.markdownContent} />
     </div>
 
     {post.photo && <PhotoCard photo={post.photo} />}
