@@ -6,15 +6,15 @@ export const songType = defineType({
     type: 'document',
     fields: [
         defineField({
-            name: 'title',
-            title: 'Title',
+            name: 'name',
+            title: 'Name',
             type: 'string',
             placeholder: 'song.mp3',
             validation: (rule) => rule.required(),
         }),
 
         defineField({
-            name: 'file',
+            name: 'audioFile',
             title: 'MP3 file',
             type: 'file',
             options: {
@@ -24,10 +24,10 @@ export const songType = defineType({
         }),
 
         defineField({
-            name: 'dateSongWasMade',
+            name: 'dateWasMade',
             title: 'Date the song was made',
             type: 'date',
-            placeholder: 'Date',
+            placeholder: 'yyyy-mm-dd',
         }),
 
         defineField({
@@ -39,14 +39,14 @@ export const songType = defineType({
         }),
 
         defineField({
-            name: 'coverArt',
+            name: 'thumbnail',
             type: 'image',
         }),
 
         defineField({
-            name: 'additionalInfo',
-            title: 'Additional info in markdown',
-            type: 'markdown',
+            name: 'bitrateKbps',
+            type: 'number',
+            validation: (rule) => rule.required().greaterThan(0),
         }),
     ],
 })
