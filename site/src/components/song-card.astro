@@ -19,8 +19,8 @@ const { song } = Astro.props
         song.thumbnail ? (
             <img
                 class="w-26 h-26 max-sm:w-18 max-sm:h-18 shrink-0 object-cover bg-accent rounded-lg shadow-2xl shadow-black/20"
-                src={import.meta.env.PUBLIC_STRAPI_CMS_BASE_URL + song.thumbnail.formats.thumbnail.url}
-                alt={`Song thumbnail - ${song.thumbnail.alternativeText || song.name}`}
+                src={song.thumbnail.asset.url + '?auto=format&w=120&h=120'}
+                alt={`Song thumbnail - ${song.name}`}
             />
         ) : (
             <div class="w-26 h-26 max-sm:w-18 max-sm:h-18 shrink-0 bg-accent rounded-lg flex items-center justify-center">
@@ -44,10 +44,7 @@ const { song } = Astro.props
             {song.bitrateKbps} kbps _ {song.secondsDuration} seconds
         </div>
 
-        <a
-            target="_blank"
-            href={import.meta.env.PUBLIC_STRAPI_CMS_BASE_URL + song.audioFile.url}
-        >
+        <a target="_blank" href={song.audioFile.asset.url}>
             <Button
                 size="sm"
                 className="mt-auto w-fit hover:cursor-pointer"

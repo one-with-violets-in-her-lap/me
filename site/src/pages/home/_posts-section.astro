@@ -1,8 +1,12 @@
 ---
-import { contentApiClient } from '@/lib/content'
 import PostCard from '@/pages/home/_post-card.astro'
+import type { Post } from '@/lib/content'
 
-const { data } = await contentApiClient.fetchPosts()
+interface Props {
+    posts: Post[]
+}
+
+const { posts } = Astro.props
 ---
 
 <section id="posts" class="p-18 max-xl:p-14 max-lg:p-8 max-sm:p-7">
@@ -13,6 +17,6 @@ const { data } = await contentApiClient.fetchPosts()
     </h2>
 
     <div class="max-w-3xl">
-        {data.map(post => <PostCard post={post} />)}
+        {posts.map(post => <PostCard post={post} />)}
     </div>
 </section>

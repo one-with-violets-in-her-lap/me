@@ -1,49 +1,85 @@
-import { strapi, type API } from '@strapi/client'
-import type { StrapiDocument, StrapiImage, StrapiMedia } from '@/lib/utils/strapi'
+import {
+    createClient,
+    type SanityAssetDocument,
+    type SanityDocument,
+    type SanityImageAssetDocument,
+} from '@sanity/client'
+import { ContentClientError } from '@/lib/utils/errors'
 
-export interface MyMetadata extends StrapiDocument {
+export interface MyMetadata extends SanityDocument {
     personStatus: 'sleeping' | 'taking a walk' | 'online' | 'self-loathing'
     health: number
     age: number
 }
 
-export interface Post extends StrapiDocument {
-    content: string
+export interface Post extends SanityDocument {
+    markdownContent: string
     photo: Photo | null
     song: Song | null
 }
 
-export interface Photo extends StrapiDocument {
+export interface Photo extends SanityDocument {
     name: string
     description: string
     takenDate: string
-    image: StrapiImage
+    image: { asset: SanityImageAssetDocument }
+    imageAlternativeText: string
 }
 
-export interface Song extends StrapiDocument {
+export interface Song extends SanityDocument {
     name: string
     description: string
     secondsDuration: number
     bitrateKbps: number
-    audioFile: StrapiMedia
-    thumbnail: StrapiImage
+    audioFile: { asset: SanityImageAssetDocument }
+    thumbnail: { asset: SanityAssetDocument }
 }
 
-const strapiClient = strapi({
-    baseURL: import.meta.env.PUBLIC_STRAPI_CMS_BASE_URL + '/api',
-    auth: import.meta.env.STRAPI_API_TOKEN,
+const sanityClient = createClient({
+    projectId: import.meta.env.SANITY_CMS_PROJECT_ID,
+    dataset: import.meta.env.SANITY_CMS_DATASET,
 })
 
 export const contentApiClient = {
     async fetchPosts() {
-        return (await strapiClient.collection('posts').find({
-            populate: ['photo.image', 'song.audioFile', 'song.thumbnail'],
-        })) as API.DocumentResponseCollection<Post>
+        return await sanityClient.fetch(`
+            *[_type == 'post'] {
+              ...,
+              photo -> {
+                ...,
+
+                image {
+                  ...,
+                  asset ->
+                }
+              },
+
+              song -> {
+                ...,
+
+                thumbnail {
+                  ...,
+                  asset ->
+                },
+
+                audioFile {
+                  ...,
+                  asset ->
+                }
+              }
+            }
+        `)
     },
 
     async fetchMyMetadata() {
-        return (await strapiClient
-            .single('metadata')
-            .find()) as API.DocumentResponse<MyMetadata>
+        const data: MyMetadata[] = await sanityClient.fetch(
+            `*[_type == "my-metadata"]`,
+        )
+
+        if (data.length < 0) {
+            throw new ContentClientError('No metadata records available')
+        }
+
+        return data[0]
     },
 }

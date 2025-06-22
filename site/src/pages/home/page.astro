@@ -17,7 +17,12 @@ Astro.response.headers.set(
     'public, max-age=420, must-revalidate',
 )
 
-const myMetadataResponse = await contentApiClient.fetchMyMetadata()
+const myMetadata = await contentApiClient.fetchMyMetadata()
+
+const posts = await contentApiClient.fetchPosts()
+
+console.log(JSON.stringify(posts, undefined, 4))
+
 const lastTrackListened = await lastFmClient.fetchLastTrack(
     import.meta.env.LAST_FM_USERNAME,
     import.meta.env.LAST_FM_API_KEY,
@@ -76,14 +81,11 @@ const lastTrackListened = await lastFmClient.fetchLastTrack(
                 >
                 </div>
 
-                <MyMetadataCard
-                    metadata={myMetadataResponse.data}
-                    {lastTrackListened}
-                />
+                <MyMetadataCard metadata={myMetadata} {lastTrackListened} />
             </div>
         </section>
 
-        <PostsSection />
+        <PostsSection {posts} />
     </main>
 
     <Scene3d />
