@@ -17,14 +17,14 @@ Astro.response.headers.set(
     'public, max-age=420, must-revalidate',
 )
 
-const myMetadata = await contentApiClient.fetchMyMetadata()
-
-const posts = await contentApiClient.fetchPosts()
-
-const lastTrackListened = await lastFmClient.fetchLastTrack(
-    import.meta.env.LAST_FM_USERNAME,
-    import.meta.env.LAST_FM_API_KEY,
-)
+const [posts, myMetadata, lastTrackListened] = await Promise.all([
+    contentApiClient.fetchPosts(),
+    contentApiClient.fetchMyMetadata(),
+    lastFmClient.fetchLastTrack(
+        import.meta.env.LAST_FM_USERNAME,
+        import.meta.env.LAST_FM_API_KEY,
+    ),
+])
 ---
 
 <RootLayout>

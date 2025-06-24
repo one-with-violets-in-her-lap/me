@@ -41,7 +41,7 @@ const sanityClient = createClient({
 })
 
 export const contentApiClient = {
-    async fetchPosts() {
+    async fetchPosts(): Promise<Post[]> {
         return await sanityClient.fetch(`
             *[_type == 'post'] {
               ...,
