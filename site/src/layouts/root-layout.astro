@@ -1,5 +1,11 @@
 ---
+import catImage from '@/assets/images/cat.png'
+
 import '@/assets/styles/global.css'
+
+import { Button } from '@/components/ui/button'
+import { Image } from 'astro:assets'
+import { Github } from 'lucide-react'
 ---
 
 <html lang="en" class="dark">
@@ -13,8 +19,41 @@ import '@/assets/styles/global.css'
         <title>*</title>
     </head>
     <body class="noise-bg">
-        <div class="relative max-w-[1800px] mx-auto">
+        <div class="max-w-[1800px] mx-auto">
             <slot />
+
+            <div
+                class="h-84 relative overflow-hidden flex flex-col justify-end mt-50"
+            >
+                <footer
+                    class="mx-4 h-fit border-t border-t-accent max-md:mx-3 max-sm:relative max-sm:z-10 max-sm:bg-background"
+                >
+                    <div
+                        class="py-7 px-10 flex items-center justify-start gap-x-12 max-md:px-3 max-md:gap-x-4 max-sm:py-4"
+                    >
+                        <a
+                            href="https://github.com/one-with-violets-in-her-lap/me"
+                            target="_blank"
+                        >
+                            <Button
+                                variant="outline"
+                                className="hover:cursor-pointer"
+                            >
+                                <Github />
+                                Source code
+                            </Button>
+                        </a>
+
+                        <small>2025 (c) Some Internet User</small>
+                    </div>
+                </footer>
+
+                <Image
+                    src={catImage}
+                    alt="Cat made of cardboard"
+                    class="absolute right-10 -bottom-4 w-62 max-md:w-42 max-md:-bottom-1 max-md:-right-4 max-sm:bottom-12"
+                />
+            </div>
         </div>
     </body>
 </html>
