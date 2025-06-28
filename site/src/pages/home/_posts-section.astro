@@ -7,6 +7,11 @@ interface Props {
 }
 
 const { posts } = Astro.props
+
+const sortedPosts = posts.toSorted(
+    (post1, post2) =>
+        new Date(post2._createdAt).getTime() - new Date(post1._createdAt).getTime(),
+)
 ---
 
 <section id="posts" class="p-18 max-xl:p-14 max-lg:p-8 max-sm:p-7">
@@ -17,6 +22,6 @@ const { posts } = Astro.props
     </h2>
 
     <div class="max-w-3xl">
-        {posts.map(post => <PostCard post={post} />)}
+        {sortedPosts.map(post => <PostCard post={post} />)}
     </div>
 </section>
