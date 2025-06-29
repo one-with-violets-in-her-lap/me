@@ -2,12 +2,13 @@
 import handImage from '@/assets/images/hand.jpg'
 import blinkingEyeVideo from '@/assets/videos/blinking-eye.mp4'
 
+import { Image } from 'astro:assets'
 import RootLayout from '@/layouts/root-layout.astro'
 import { Button } from '@/components/ui/button'
-import { Image } from 'astro:assets'
 import PostsSection from '@/pages/home/_posts-section.astro'
 import Scene3d from '@/pages/home/_scene-3d.astro'
 import MyMetadataCard from '@/pages/home/_my-metadata-card.astro'
+import NavigationPanel from '@/pages/home/_navigation-panel.astro'
 import { contentApiClient } from '@/lib/content'
 import { lastFmClient } from '@/lib/last-fm'
 
@@ -45,13 +46,7 @@ const [posts, myMetadata, lastTrackListened] = await Promise.all([
                     ## Dev, music, photography & text dump
                 </p>
 
-                <div class="flex items-center gap-x-3">
-                    <a href="#posts"
-                        ><Button className="px-7 hover:cursor-pointer">
-                            View
-                        </Button></a
-                    >
-                </div>
+                <NavigationPanel />
             </div>
 
             <div
