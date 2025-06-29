@@ -3,6 +3,11 @@ import { GLTFLoader, OrbitControls } from 'three/examples/jsm/Addons.js'
 import { Crow3dObject } from './crow'
 import { animate } from 'motion'
 
+const CROW_RANDOM_ANIMATION_CHANCES = {
+    flyBy: 0.5,
+    flyAway: 0.5
+}
+
 export class Crow3dScene {
     private readonly clock: THREE.Clock
     private readonly scene: THREE.Scene
@@ -14,7 +19,7 @@ export class Crow3dScene {
     private readonly controls: OrbitControls
 
     private readonly pointLight: THREE.PointLight
-    private readonly crow: Crow3dObject
+    private readonly crowObjects: Crow3dObject[] = []
     private readonly platform: Platform3dObject
 
     constructor(canvas: HTMLCanvasElement) {
@@ -60,15 +65,32 @@ export class Crow3dScene {
 
         this.gltfLoader = new GLTFLoader()
 
-        this.crow = new Crow3dObject(this.gltfLoader)
+        this.crowObjects = new Array(7)
+            .fill(null)
+            .map(() => new Crow3dObject(this.gltfLoader))
 
         this.platform = new Platform3dObject()
         this.scene.add(this.platform.mesh)
     }
 
     async initialize() {
-        const crowModel = await this.crow.initialize()
-        this.scene.add(crowModel.scene)
+        for (let crowIndex = 0; crowIndex < this.crowObjects.length; crowIndex++) {
+            const crow = this.crowObjects[crowIndex]
+
+            const crowModel = await crow.initialize()
+            this.scene.add(crowModel.scene)
+
+            if (crowIndex === 0) {
+                crow.startArrivalAnimation()
+                continue
+            }
+
+            if (Math.random() > 1 - CROW_RANDOM_ANIMATION_CHANCES.flyAway) {
+                crow.flyAwayAndDisappear()
+            } else {
+                crow.flyByAndDisappear()
+            }
+        }
 
         document.addEventListener('mousemove', event =>
             this.moveCameraAccordingToMousePosition(event.pageX),
@@ -80,7 +102,7 @@ export class Crow3dScene {
         this.renderer.setAnimationLoop(() => {
             const deltaTime = this.clock.getDelta()
 
-            this.crow.update(deltaTime)
+            this.crowObjects.forEach(crow => crow.update(deltaTime))
 
             this.controls.update()
             this.renderer.render(this.scene, this.camera)
