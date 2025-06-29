@@ -71,12 +71,10 @@ import NavigationPanelTile from '@/pages/home/_navigation-panel/navigation-panel
     ) as NodeListOf<HTMLElement>
 
     navigationTiles.forEach((tile, index) => {
-        tile.style.opacity = '0'
-
         animate(
             tile,
             {
-                opacity: 1,
+		opacity: 1,
             },
             {
                 delay: Math.max(0.16 * index, 0.7),
