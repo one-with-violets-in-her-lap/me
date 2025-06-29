@@ -38,6 +38,8 @@ export class Crow3dObject {
             }
         })
 
+        this.startAnimation()
+
         return this.gltfModel
     }
 
@@ -49,7 +51,7 @@ export class Crow3dObject {
         this.mixer.update(deltaTime * this.ANIMATION_SPEED)
     }
 
-    startArrivalAnimation() {
+    private startAnimation() {
         if (!this.gltfModel) {
             throw new NotInitializedError()
         }
@@ -86,54 +88,6 @@ export class Crow3dObject {
             {
                 duration: 0.6,
                 delay: 0.3,
-            },
-        )
-    }
-
-    flyByAndDisappear() {
-        if (!this.gltfModel) {
-            throw new NotInitializedError()
-        }
-
-        this.mixer = new THREE.AnimationMixer(this.gltfModel.scene)
-        const animation = this.mixer.clipAction(this.gltfModel.animations[0])
-        animation.play()
-        this.mixer.timeScale = -1
-        this.mixer.setTime(0.3)
-
-        this.gltfModel.scene.position.y = THREE.MathUtils.randInt(1, 5)
-
-        animate(
-            this.gltfModel.scene.position,
-            { x: THREE.MathUtils.randInt(-3, -7), z: 10, y: 4 },
-            { duration: 3, onComplete: () => this.gltfModel?.scene.clear() },
-        )
-    }
-
-    flyAwayAndDisappear() {
-        if (!this.gltfModel) {
-            throw new NotInitializedError()
-        }
-
-        this.mixer = new THREE.AnimationMixer(this.gltfModel.scene)
-        const animation = this.mixer.clipAction(this.gltfModel.animations[0])
-        animation.play()
-        this.mixer.timeScale = -1
-        this.mixer.setTime(0.3)
-
-        animate(
-            this.gltfModel.scene.position,
-            { x: THREE.MathUtils.randInt(-4, -15), z: -50 },
-            { duration: 3, onComplete: () => this.gltfModel?.scene.clear() },
-        )
-
-        animate(this.gltfModel.scene.rotation, { y: -0.3 }, { duration: 0.3 })
-
-        animate(
-            this.gltfModel.scene.position,
-            { y: 6 },
-            {
-                duration: 2,
             },
         )
     }
