@@ -15,15 +15,23 @@ import NavigationPanelTile from '@/pages/home/_navigation-panel/navigation-panel
     <NavigationPanelTile
         href="/photography"
         additionalClass="col-span-6"
-        title="Photography"
+        title="Photo"
     />
 
-    <NavigationPanelTile additionalClass="col-span-4">
-        <div></div>
+    <NavigationPanelTile additionalClass="col-span-4 group">
+        <div
+            class="group-hover:opacity-100 opacity-0 transition-opacity duraiton-200 text-muted font-semibold text-3xl"
+        >
+            시각 장애
+        </div>
     </NavigationPanelTile>
 
-    <NavigationPanelTile additionalClass="col-span-2">
-        <div></div>
+    <NavigationPanelTile additionalClass="col-span-2 overflow-hidden group">
+        <div
+            class="group-hover:opacity-100 opacity-0 transition-opacity duraiton-200 text-muted font-semibold text-3xl"
+        >
+            좋은 듣기 되세요
+        </div>
     </NavigationPanelTile>
 
     <div class="relative col-span-6">
@@ -31,9 +39,44 @@ import NavigationPanelTile from '@/pages/home/_navigation-panel/navigation-panel
 
         <!-- Background unclickable panel -->
         <NavigationPanelTile
-            additionalClass="absolute top-0 -right-full w-full translate-x-3"
+            additionalClass="absolute top-0 -right-full w-full translate-x-3 overflow-hidden"
         >
-            <div></div>
+            <div class="text-muted font-mono text-[10px]">
+                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+                @@@@@@@@@@@@@@@@@@@@@@@@#WWW9832478$W9@@@@@@@@@@@@@@@@@@@@@@@@
+                @@@@@@@@@@@@@@@@@@@@@@@77734caa:!!!?55#@@@@@@@@@@@@@@@@@@@@@@@
+                @@@@@@@@@@@@@@@@@@@@@W72241:c;=!!!:3446@?7@@@@@@@@@@@@@@@@@@@@
+                @@@@@@@@@@@@@@@@@@@@@bc6454!=++?c!b0=,11++;6b$+#@@@@@@@@@@@@@@
+                @@@@@@@@@@@@@@@@@@W#W75452?c--a,+-,,-,,;?c+c!a-!@@@@@@@@@@@@@@
+                @@@@@@@@@@@@@@@@@$W=!000352ab:;.,,.=+!20ac;-0?c-;+$@@@@@@@@@@@
+                @@@@@@@@@@@@@;cb!1@55564553,c,;,--,===,?b:-..!a-a+-b@@@@@@@@@@
+                @@@@@@@@@@@@9.4420332801?0a+baa,;a=3?++,=,,c+c-,,=,_.@@@@@@@@@
+                @@@@@@@9=;6=.=;a..,+3a03?,;=aa00+..b2-+=?b1ab?!?-,....@@@@@@@@
+                @@@@@@@?;c-,=:!116:+,,,:;,,,,,,,-...,-;:c?bc,;.,.++,..-@@@@@@@
+                @@@@@@@4321,=cba0241a?00!:-,,:,+;==_..,;-+.=,+,:;,,,:;,::@@@@@
+                @@@@@@@@$$95ab002200034433c+=,=._:+,,.:!=:;a!!---=b,,,c?!:@@@@
+                @@@@@@?0W#98932221???03344::,,,.-c++.+c=+c;;..;+:b,,;+3$0b@@@@
+                @@@@@@:!!a08$60!0?ccb?0?0a=-,,,+:=?!:c=a:.__.+.,b=--,_59$=$@@@
+                @@@@@@@@!76257;;=,=:cbbac+-.,,,!4020a23-_.,b,,.=,+,=b303=:,3@@
+                @@@@@@W$5773c;6$;c3c!1?a24a=bc?2!065752!743..,.,.b,:.=;;,,b1$@
+                @@@@710a!122c+-0a!::;00?0a26+b-:444556763310;:_,==-:c!!?cc244@
+                @@@,!240631bc;,!a?0!120bc?c.,_;?001!4022210!ac=..._.==-:+,?5@@
+                @@,.a?200!c00.,;+,;!ca00.1.23?ca?011?babaa,...=-+.c320,=,,#@@@
+                @@,,2?14040-c110?b,-c;;;_.-_,;!?!?0+-,=____:31_.._,;a+=,b,?0@@
+                @@#,?4472?0113..,a;,a65!,c00-_.+-.,+?b-a10?:-++:+32aa::,#:;@@@
+                @@@@@@@70!?22133,_b.;,49$9!b;:;,;:=a;+bcc26204b0:aca1;:+,,:@@@
+                @@@@@@@@b0014344!.+-;+-cc,b?c:b-,bbccc;b!;;!!;ba6-b241++,-9@@@
+                @@@@@@@@84643533b0,.,+b:!-c:.,,;cabbac;+bb?cb;;-:=;685!c,b@@@@
+                @@@@@@@@@W4!5444bc!b_.,,,,-._.=;:.,ab;;a01bb;;+,-c==;:;=+0@@@@
+                @@@@@@@@@@@51120;cb!aaa+,,;!;..,,,=+;;c=bac:,=:+-cc:=,+=@@@@@@
+                @@@@@@@@@@12,6?.;c:c!b5?!c+a12..,::,=::++,-=-?!c;,,,,=W@@@@@@@
+                @@@@@@@@@@,,110;:ac!2$960b:032==-bc.+:+===,,::;=0a::,,@@@@@@@@
+                @@@@@@@@@@@@@@@@@@@@==b0!b66:;;,;+,,=+=-,,,,,,,$3137@@@@@@@@@@
+                @@@@@@@@@@@@@@@@@@@@@@=,c!46b+-,,..,--,-,,_.,,a9@@@@@@@@@@@@@@
+                @@@@@@@@@@@@@@@@@@@@@@#.=;+++=,+.,,,-=-,,,!+=.,#=4@@@@@@@@@@@@
+                @@@@@@@@@@@@@@@@@@@@@@@@6,-_+ca=!+:;+c:643$4@@,:@@@@@@@@@@@@@@
+                @@@@@@@@@@@@@@@@@@@@@@@@@@@@a85343?777W@@@@@@@@@@@@@@@@@@@@@@@
+            </div>
         </NavigationPanelTile>
     </div>
 
@@ -41,7 +84,7 @@ import NavigationPanelTile from '@/pages/home/_navigation-panel/navigation-panel
         <NavigationPanelTile
             additionalClass="w-full"
             href="#posts"
-            title="Shitposting"
+            title="Thoughts"
         />
 
         <!-- Background unclickable panel -->
@@ -53,14 +96,14 @@ import NavigationPanelTile from '@/pages/home/_navigation-panel/navigation-panel
     </div>
 
     <!-- Bottom shadow -->
-    <div class="absolute bg-background blur-md w-full h-8 bottom-0 left-0"></div>
+    <div class="pointer-events-none absolute bg-background blur-md w-full h-8 bottom-0 left-0"></div>
     <!-- Top shadow -->
-    <div class="absolute bg-background blur-md w-full h-8 top-0 left-0"></div>
+    <div class="pointer-events-none absolute bg-background blur-md w-full h-8 top-0 left-0"></div>
 
     <!-- Left shadow -->
-    <div class="absolute bg-background blur-md w-8 h-full left-0 top-0"></div>
+    <div class="pointer-events-none absolute bg-background blur-md w-8 h-full left-0 top-0"></div>
     <!-- Right shadow -->
-    <div class="absolute bg-background blur-md w-8 h-full right-0 top-0"></div>
+    <div class="pointer-events-none absolute bg-background blur-md w-8 h-full right-0 top-0"></div>
 </nav>
 
 <script>
