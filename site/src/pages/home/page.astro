@@ -2,12 +2,13 @@
 import handImage from '@/assets/images/hand.jpg'
 import blinkingEyeVideo from '@/assets/videos/blinking-eye.mp4'
 
+import { Image } from 'astro:assets'
 import RootLayout from '@/layouts/root-layout.astro'
 import { Button } from '@/components/ui/button'
-import { Image } from 'astro:assets'
 import PostsSection from '@/pages/home/_posts-section.astro'
 import Scene3d from '@/pages/home/_scene-3d.astro'
 import MyMetadataCard from '@/pages/home/_my-metadata-card.astro'
+import NavigationPanel from '@/pages/home/_navigation-panel/navigation-panel.astro'
 import { contentApiClient } from '@/lib/content'
 import { lastFmClient } from '@/lib/last-fm'
 
@@ -30,9 +31,9 @@ const [posts, myMetadata, lastTrackListened] = await Promise.all([
 <RootLayout>
     <main>
         <section
-            class="mb-12 px-18 grid grid-cols-[1fr_minmax(500px,1fr)] items-start gap-x-10 justify-start h-screen pb-10 max-lg:h-auto max-lg:px-10 max-lg:flex max-lg:flex-col max-lg:gap-y-10"
+            class="mb-12 px-18 grid grid-cols-[1fr_minmax(500px,1fr)] items-start gap-x-10 justify-start h-screen min-h-fit pb-10 max-lg:h-auto max-lg:px-10 max-lg:flex max-lg:flex-col max-lg:items-stretch max-lg:gap-y-10 max-sm:p-5"
         >
-            <div class="pt-18">
+            <div class="pt-18 max-sm:pt-6">
                 <h1
                     class="scroll-m-20 text-start text-7xl max-w-lg max-xl:text-5xl font-extrabold tracking-tight mb-7 text-balance"
                 >
@@ -40,18 +41,12 @@ const [posts, myMetadata, lastTrackListened] = await Promise.all([
                 </h1>
 
                 <p
-                    class="text-muted-foreground/70 text-3xl text-balance max-xl:text-2xl mb-7"
+                    class="text-muted-foreground/70 text-3xl text-balance max-xl:text-2xl mb-7 max-lg:hidden"
                 >
                     ## Dev, music, photography & text dump
                 </p>
 
-                <div class="flex items-center gap-x-3">
-                    <a href="#posts"
-                        ><Button className="px-7 hover:cursor-pointer">
-                            View
-                        </Button></a
-                    >
-                </div>
+                <NavigationPanel />
             </div>
 
             <div
@@ -66,7 +61,7 @@ const [posts, myMetadata, lastTrackListened] = await Promise.all([
 
                 <Image
                     src={handImage}
-                    class="rounded-xl w-full h-[58%] object-cover object-bottom-left brightness-[0.5] shrink"
+                    class="rounded-xl w-full h-[58%] object-cover object-bottom-left brightness-[0.5] shrink max-lg:hidden"
                     loading="eager"
                     fetchpriority="high"
                     decoding="sync"
@@ -75,7 +70,7 @@ const [posts, myMetadata, lastTrackListened] = await Promise.all([
 
                 <!-- Spotlight effect -->
                 <div
-                    class="absolute -bottom-0 -left-50 bg-primary-lighter/40 w-[500px] h-[559px] rounded-full blur-[225px] max-lg:top-1/2 max-lg:-translate-y-1/2 max-lg:right-0 max-lg:left-auto"
+                    class="pointer-events-none absolute -bottom-0 -left-50 bg-primary-lighter/40 w-[500px] h-[559px] rounded-full blur-[225px] max-lg:top-1/2 max-lg:-translate-y-1/2 max-lg:right-0 max-lg:left-auto"
                 >
                 </div>
 
