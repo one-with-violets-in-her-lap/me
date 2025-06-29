@@ -40,11 +40,11 @@ export class Crow3dScene {
         this.renderer.setSize(canvas.clientWidth, canvas.clientHeight)
         this.renderer.shadowMap.enabled = true
 
-        const ambientLight = new THREE.AmbientLight('white', 0.5)
+        const ambientLight = new THREE.AmbientLight('white', 10)
         ambientLight.position.set(10, 10, 10)
         this.scene.add(ambientLight)
 
-        this.pointLight = new THREE.PointLight('#ffdbde', 6, 0, 0)
+        this.pointLight = new THREE.PointLight('#fff', 35, 0, 0)
         this.pointLight.position.set(-4, 3, 6)
         this.pointLight.castShadow = true
         this.pointLight.shadow.intensity = 0.4

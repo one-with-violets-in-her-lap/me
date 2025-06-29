@@ -31,7 +31,7 @@ const [posts, myMetadata, lastTrackListened] = await Promise.all([
 <RootLayout>
     <main>
         <section
-            class="mb-12 px-18 grid grid-cols-[1fr_minmax(500px,1fr)] items-start gap-x-10 justify-start h-screen min-h-fit pb-10 max-lg:h-auto max-lg:px-10 max-lg:flex max-lg:flex-col max-lg:gap-y-10 max-sm:p-5"
+            class="mb-12 px-18 grid grid-cols-[1fr_minmax(500px,1fr)] items-start gap-x-10 justify-start h-screen min-h-fit pb-10 max-lg:h-auto max-lg:px-10 max-lg:flex max-lg:flex-col max-lg:items-stretch max-lg:gap-y-10 max-sm:p-5"
         >
             <div class="pt-18 max-sm:pt-6">
                 <h1
@@ -41,7 +41,7 @@ const [posts, myMetadata, lastTrackListened] = await Promise.all([
                 </h1>
 
                 <p
-                    class="text-muted-foreground/70 text-3xl text-balance max-xl:text-2xl mb-7"
+                    class="text-muted-foreground/70 text-3xl text-balance max-xl:text-2xl mb-7 max-lg:hidden"
                 >
                     ## Dev, music, photography & text dump
                 </p>
@@ -61,7 +61,7 @@ const [posts, myMetadata, lastTrackListened] = await Promise.all([
 
                 <Image
                     src={handImage}
-                    class="rounded-xl w-full h-[58%] object-cover object-bottom-left brightness-[0.5] shrink"
+                    class="rounded-xl w-full h-[58%] object-cover object-bottom-left brightness-[0.5] shrink max-lg:hidden"
                     loading="eager"
                     fetchpriority="high"
                     decoding="sync"
