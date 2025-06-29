@@ -7,16 +7,12 @@ import NavigationPanelTile from '@/pages/home/_navigation-panel/navigation-panel
     class="relative overflow-hidden w-full bg-background rounded-lg p-4 grid grid-cols-10 gap-3"
 >
     <NavigationPanelTile
-        href="/projects"
+        href="/dev-projects"
         additionalClass="col-span-full"
         title="Software"
     />
 
-    <NavigationPanelTile
-        href="/photography"
-        additionalClass="col-span-6"
-        title="Photo"
-    />
+    <NavigationPanelTile href="/photo" additionalClass="col-span-6" title="Photo" />
 
     <NavigationPanelTile additionalClass="col-span-4 group">
         <div
@@ -96,14 +92,26 @@ import NavigationPanelTile from '@/pages/home/_navigation-panel/navigation-panel
     </div>
 
     <!-- Bottom shadow -->
-    <div class="pointer-events-none absolute bg-background blur-md w-full h-8 bottom-0 left-0"></div>
+    <div
+        class="pointer-events-none absolute bg-background blur-md w-full h-9 -bottom-5 left-0"
+    >
+    </div>
     <!-- Top shadow -->
-    <div class="pointer-events-none absolute bg-background blur-md w-full h-8 top-0 left-0"></div>
+    <div
+        class="pointer-events-none absolute bg-background blur-md w-full h-9 -top-3 left-0"
+    >
+    </div>
 
     <!-- Left shadow -->
-    <div class="pointer-events-none absolute bg-background blur-md w-8 h-full left-0 top-0"></div>
+    <div
+        class="pointer-events-none absolute bg-background blur-md w-9 h-full -left-3 top-0"
+    >
+    </div>
     <!-- Right shadow -->
-    <div class="pointer-events-none absolute bg-background blur-md w-8 h-full right-0 top-0"></div>
+    <div
+        class="pointer-events-none absolute bg-background blur-md w-20 h-full -right-10 top-0"
+    >
+    </div>
 </nav>
 
 <script>
