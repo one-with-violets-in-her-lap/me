@@ -1,0 +1,88 @@
+---
+import { ChevronsRightIcon } from 'lucide-react'
+import NavigationPanelTile from '@/pages/home/_navigation-panel/navigation-panel-tile.astro'
+---
+
+<nav
+    class="relative overflow-hidden w-full bg-background rounded-lg p-4 grid grid-cols-10 gap-3"
+>
+    <NavigationPanelTile
+        href="/projects"
+        additionalClass="col-span-full"
+        title="Software"
+    />
+
+    <NavigationPanelTile
+        href="/photography"
+        additionalClass="col-span-6"
+        title="Photography"
+    />
+
+    <NavigationPanelTile additionalClass="col-span-4">
+        <div></div>
+    </NavigationPanelTile>
+
+    <NavigationPanelTile additionalClass="col-span-2">
+        <div></div>
+    </NavigationPanelTile>
+
+    <div class="relative col-span-6">
+        <NavigationPanelTile href="/music" additionalClass="w-full" title="Music" />
+
+        <!-- Background unclickable panel -->
+        <NavigationPanelTile
+            additionalClass="absolute top-0 -right-full w-full translate-x-3"
+        >
+            <div></div>
+        </NavigationPanelTile>
+    </div>
+
+    <div class="relative col-start-2 col-end-11">
+        <NavigationPanelTile
+            additionalClass="w-full"
+            href="#posts"
+            title="Shitposting"
+        />
+
+        <!-- Background unclickable panel -->
+        <NavigationPanelTile
+            additionalClass="w-full absolute -left-full top-0 -translate-x-3"
+        >
+            <div></div>
+        </NavigationPanelTile>
+    </div>
+
+    <!-- Bottom shadow -->
+    <div class="absolute bg-background blur-md w-full h-8 bottom-0 left-0"></div>
+    <!-- Top shadow -->
+    <div class="absolute bg-background blur-md w-full h-8 top-0 left-0"></div>
+
+    <!-- Left shadow -->
+    <div class="absolute bg-background blur-md w-8 h-full left-0 top-0"></div>
+    <!-- Right shadow -->
+    <div class="absolute bg-background blur-md w-8 h-full right-0 top-0"></div>
+</nav>
+
+<script>
+    import { animate } from 'motion'
+
+    const navigationTiles = document.querySelectorAll(
+        '.navigation-panel-tile',
+    ) as NodeListOf<HTMLElement>
+
+    navigationTiles.forEach((tile, index) => {
+        tile.style.opacity = '0'
+
+        animate(
+            tile,
+            {
+                opacity: 1,
+            },
+            {
+                delay: Math.max(0.16 * index, 0.7),
+                duration: 1,
+                type: 'spring',
+            },
+        )
+    })
+</script>
