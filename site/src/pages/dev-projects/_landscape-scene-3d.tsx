@@ -42,7 +42,7 @@ export function LandscapeParallaxScene3d() {
     return <motion.canvas
         ref={canvas}
         style={{ y: scrollY }}
-        className="relative h-[calc(100vh-96px-60px)] w-full"
+        className="absolute top-0 left-0 h-screen w-full"
     ></motion.canvas>
 }
 

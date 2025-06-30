@@ -4,7 +4,9 @@ import { LandscapeParallaxScene3d } from '@/pages/dev-projects/_landscape-scene-
 ---
 
 <RootLayout>
-    <main class="py-13 px-12 mb-[4000px]">
+    <LandscapeParallaxScene3d client:load />
+
+    <main class="relative py-13 px-12 mb-[4000px]">
         <h1
             class="scroll-m-20 text-start text-7xl max-w-lg max-xl:text-5xl font-extrabold tracking-tight mb-4 text-balance h-20"
         >
@@ -14,9 +16,7 @@ import { LandscapeParallaxScene3d } from '@/pages/dev-projects/_landscape-scene-
         <div class="grid grid-cols-[4fr_6fr] gap-6">
             <div class="bg-foreground/5 flex flex-col gap-y-5"></div>
 
-            <div>
-                <LandscapeParallaxScene3d client:load />
-            </div>
+            <div></div>
         </div>
     </main>
 </RootLayout>

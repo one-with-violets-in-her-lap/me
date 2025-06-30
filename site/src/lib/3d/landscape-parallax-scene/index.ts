@@ -1,25 +1,26 @@
-import pinkTreeGlbModelUrl from '@/assets/3d-models/pink-tree.glb?url'
-
 import * as THREE from 'three'
-import { GLTFLoader, OrbitControls, type GLTF } from 'three/examples/jsm/Addons.js'
+import { GLTFLoader, OrbitControls } from 'three/examples/jsm/Addons.js'
+import { PinkTree3dObject } from '@/lib/3d//landscape-parallax-scene/pink-tree'
+import { BloomEffectRenderer } from '@/lib/3d//landscape-parallax-scene/bloom-effect-renderer'
 
 export class LandscapeParallax3dScene {
     private readonly clock: THREE.Clock
     private readonly scene: THREE.Scene
     private readonly camera: THREE.Camera
     private readonly renderer: THREE.WebGLRenderer
-    private readonly controls: OrbitControls
+    private readonly controls: OrbitControls | null = null
 
     private readonly gltfLoader: GLTFLoader
 
-    private readonly pointLight: THREE.PointLight
+    private pinkTree: PinkTree3dObject
 
-    private pinkTreeModel?: GLTF
+    private readonly bloomEffectRenderer: BloomEffectRenderer
 
-    constructor(canvas: HTMLCanvasElement) {
+    constructor(private readonly canvas: HTMLCanvasElement) {
         this.clock = new THREE.Clock()
 
         this.scene = new THREE.Scene()
+        this.scene.background = new THREE.Color('#282323')
 
         this.camera = new THREE.PerspectiveCamera(
             75,
@@ -27,52 +28,62 @@ export class LandscapeParallax3dScene {
             0.1,
             1000,
         )
-        this.camera.position.z = 6
-        this.camera.position.y = 0.3
-        this.camera.position.x = 2
+        this.camera.position.z = 3
+        this.camera.position.y = -1
+        this.camera.position.x = -5
+	this.camera.rotation.x = 0.8
 
         this.renderer = new THREE.WebGLRenderer({
             canvas,
             alpha: true,
         })
+        this.renderer.toneMapping = THREE.ReinhardToneMapping
         this.renderer.setPixelRatio(window.devicePixelRatio)
         this.renderer.setSize(canvas.clientWidth, canvas.clientHeight)
         this.renderer.shadowMap.enabled = true
 
-        const ambientLight = new THREE.AmbientLight('white', 10)
+        const ambientLight = new THREE.AmbientLight('white', 1)
         ambientLight.position.set(10, 10, 10)
         this.scene.add(ambientLight)
 
-        this.pointLight = new THREE.PointLight('#fff', 35, 0, 0)
-        this.pointLight.position.set(-4, 3, 6)
-        this.pointLight.castShadow = true
-        this.pointLight.shadow.intensity = 0.4
-        this.scene.add(this.pointLight)
+        const light = new THREE.DirectionalLight('#fff', 8)
+        light.position.set(2, 11, -5)
+        light.castShadow = true
+        light.shadow.intensity = 0.4
+        this.scene.add(light)
 
-        // const gridHelper = new THREE.GridHelper()
-        // this.scene.add(gridHelper)
-
-        const lightHelper = new THREE.PointLightHelper(this.pointLight)
+        const lightHelper = new THREE.DirectionalLightHelper(light)
         this.scene.add(lightHelper)
 
-        this.controls = new OrbitControls(this.camera, this.renderer.domElement)
+        // this.controls = new OrbitControls(this.camera, this.renderer.domElement)
 
         this.gltfLoader = new GLTFLoader()
+
+        this.pinkTree = new PinkTree3dObject(this.gltfLoader)
+
+        this.bloomEffectRenderer = new BloomEffectRenderer(
+            this.scene,
+            this.camera,
+            this.renderer,
+            this.canvas,
+        )
     }
 
     async initialize() {
-        this.pinkTreeModel = await this.gltfLoader.loadAsync(pinkTreeGlbModelUrl)
+        const pinkTreeObject = await this.pinkTree.initialize()
+        this.scene.add(pinkTreeObject.scene)
 
         this.renderer.setAnimationLoop(() => {
             const deltaTime = this.clock.getDelta()
 
-            this.controls.update()
-            this.renderer.render(this.scene, this.camera)
+            this.bloomEffectRenderer.render()
+
+            // this.controls?.update()
         })
     }
 
     dispose() {
-	this.scene.clear()
-	this.renderer.dispose()
+        this.scene.clear()
+        this.renderer.dispose()
     }
 }
