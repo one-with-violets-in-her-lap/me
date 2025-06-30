@@ -1,0 +1,22 @@
+---
+import RootLayout from '@/layouts/root-layout.astro'
+import { LandscapeParallaxScene3d } from '@/pages/dev-projects/_landscape-scene-3d'
+---
+
+<RootLayout>
+    <main class="py-13 px-12 mb-[4000px]">
+        <h1
+            class="scroll-m-20 text-start text-7xl max-w-lg max-xl:text-5xl font-extrabold tracking-tight mb-4 text-balance h-20"
+        >
+            Dev @
+        </h1>
+
+        <div class="grid grid-cols-[4fr_6fr] gap-6">
+            <div class="bg-foreground/5 flex flex-col gap-y-5"></div>
+
+            <div>
+                <LandscapeParallaxScene3d client:load />
+            </div>
+        </div>
+    </main>
+</RootLayout>
