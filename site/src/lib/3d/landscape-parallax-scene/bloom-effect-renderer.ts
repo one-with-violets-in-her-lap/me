@@ -10,7 +10,7 @@ import {
 } from 'three/examples/jsm/Addons.js'
 
 export class BloomEffectRenderer {
-    private bloomPass: UnrealBloomPass 
+    private bloomPass: UnrealBloomPass
     private bloomComposer: EffectComposer
     private finalComposer: EffectComposer
 
@@ -62,12 +62,17 @@ export class BloomEffectRenderer {
     }
 
     render() {
-	this.bloomComposer.render()
-	this.finalComposer.render()
+        this.bloomComposer.render()
+        this.finalComposer.render()
     }
 
     handleResize(width: number, height: number) {
-	this.bloomPass.setSize(width, height)
+        this.bloomPass.setSize(width, height)
+
+        this.finalComposer.renderTarget1.setSize(width, height)
+        this.finalComposer.renderTarget2.setSize(width, height)
+
+        this.bloomComposer.renderTarget1.setSize(width, height)
+        this.bloomComposer.renderTarget2.setSize(width, height)
     }
 }
-
