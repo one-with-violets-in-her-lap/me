@@ -1,12 +1,14 @@
 import * as THREE from 'three'
+import { scroll } from 'motion'
 import { GLTFLoader, OrbitControls } from 'three/examples/jsm/Addons.js'
 import { PinkTree3dObject } from '@/lib/3d//landscape-parallax-scene/pink-tree'
 import { BloomEffectRenderer } from '@/lib/3d//landscape-parallax-scene/bloom-effect-renderer'
+import { animate } from 'motion/react'
 
 export class LandscapeParallax3dScene {
     private readonly clock: THREE.Clock
     private readonly scene: THREE.Scene
-    private readonly camera: THREE.Camera
+    private readonly camera: THREE.PerspectiveCamera
     private readonly renderer: THREE.WebGLRenderer
     private readonly controls: OrbitControls | null = null
 
@@ -15,6 +17,8 @@ export class LandscapeParallax3dScene {
     private pinkTree: PinkTree3dObject
 
     private readonly bloomEffectRenderer: BloomEffectRenderer
+
+    private readonly abortController: AbortController
 
     constructor(private readonly canvas: HTMLCanvasElement) {
         this.clock = new THREE.Clock()
@@ -30,8 +34,8 @@ export class LandscapeParallax3dScene {
         )
         this.camera.position.z = 3
         this.camera.position.y = -1
-        this.camera.position.x = -5
-	this.camera.rotation.x = 0.8
+        this.camera.position.x = -6
+        this.camera.rotation.x = 1
 
         this.renderer = new THREE.WebGLRenderer({
             canvas,
@@ -65,13 +69,20 @@ export class LandscapeParallax3dScene {
             this.scene,
             this.camera,
             this.renderer,
-            this.canvas,
         )
+
+        this.abortController = new AbortController()
     }
 
     async initialize() {
         const pinkTreeObject = await this.pinkTree.initialize()
         this.scene.add(pinkTreeObject.scene)
+
+        window.addEventListener('resize', () => this.handleResize(), {
+            signal: this.abortController.signal,
+        })
+
+        scroll(animate(this.camera.position, { y: [-1, 20], x: [-6, -5] }))
 
         this.renderer.setAnimationLoop(() => {
             const deltaTime = this.clock.getDelta()
@@ -85,5 +96,19 @@ export class LandscapeParallax3dScene {
     dispose() {
         this.scene.clear()
         this.renderer.dispose()
+
+        this.abortController.abort()
+    }
+
+    private handleResize() {
+        this.camera.aspect = window.innerWidth / window.innerHeight
+        this.camera.updateProjectionMatrix()
+
+        this.renderer.setSize(window.innerWidth, window.innerHeight)
+
+        this.canvas.style.width = window.innerWidth + 'px'
+        this.canvas.style.height = window.innerHeight + 'px'
+
+        this.bloomEffectRenderer.handleResize(window.innerWidth, window.innerHeight)
     }
 }

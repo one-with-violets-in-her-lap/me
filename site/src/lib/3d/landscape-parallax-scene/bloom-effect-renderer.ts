@@ -10,14 +10,14 @@ import {
 } from 'three/examples/jsm/Addons.js'
 
 export class BloomEffectRenderer {
-    private finalComposer: EffectComposer
+    private bloomPass: UnrealBloomPass 
     private bloomComposer: EffectComposer
+    private finalComposer: EffectComposer
 
     constructor(
         scene: THREE.Scene,
         camera: THREE.Camera,
         renderer: THREE.WebGLRenderer,
-        canvas: HTMLCanvasElement,
         params = {
             exposure: 1,
             bloomStrength: 5,
@@ -27,20 +27,20 @@ export class BloomEffectRenderer {
     ) {
         const renderScene = new RenderPass(scene, camera)
 
-        const bloomPass = new UnrealBloomPass(
-            new THREE.Vector2(canvas.clientWidth, canvas.clientHeight),
+        this.bloomPass = new UnrealBloomPass(
+            new THREE.Vector2(window.innerWidth, window.innerHeight),
             0.01,
             0.0005,
             0,
         )
-        bloomPass.threshold = params.bloomThreshold
-        bloomPass.strength = params.bloomStrength
-        bloomPass.radius = params.bloomRadius
+        this.bloomPass.threshold = params.bloomThreshold
+        this.bloomPass.strength = params.bloomStrength
+        this.bloomPass.radius = params.bloomRadius
 
         this.bloomComposer = new EffectComposer(renderer)
         this.bloomComposer.renderToScreen = false
         this.bloomComposer.addPass(renderScene)
-        this.bloomComposer.addPass(bloomPass)
+        this.bloomComposer.addPass(this.bloomPass)
 
         const finalPass = new ShaderPass(
             new THREE.ShaderMaterial({
@@ -64,6 +64,10 @@ export class BloomEffectRenderer {
     render() {
 	this.bloomComposer.render()
 	this.finalComposer.render()
+    }
+
+    handleResize(width: number, height: number) {
+	this.bloomPass.setSize(width, height)
     }
 }
 
