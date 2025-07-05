@@ -83,6 +83,7 @@ export class LandscapeParallax3dScene {
         })
 
         scroll(animate(this.camera.position, { y: [-1, 20], x: [-6, -5] }))
+        scroll(animate(this.camera.rotation, { x: [1, -4] }))
 
         this.renderer.setAnimationLoop(() => {
             const deltaTime = this.clock.getDelta()
