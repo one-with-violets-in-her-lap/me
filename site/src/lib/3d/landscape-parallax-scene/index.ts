@@ -6,7 +6,7 @@ import { BloomEffectRenderer } from '@/lib/3d//landscape-parallax-scene/bloom-ef
 import { animate } from 'motion/react'
 
 export class LandscapeParallax3dScene {
-    private readonly clock: THREE.Clock
+    // private readonly clock: THREE.Clock
     private readonly scene: THREE.Scene
     private readonly camera: THREE.PerspectiveCamera
     private readonly renderer: THREE.WebGLRenderer
@@ -20,8 +20,11 @@ export class LandscapeParallax3dScene {
 
     private readonly abortController: AbortController
 
-    constructor(private readonly canvas: HTMLCanvasElement) {
-        this.clock = new THREE.Clock()
+    constructor(
+        private readonly canvas: HTMLCanvasElement,
+        enableOrbitContorlsForDebug = false,
+    ) {
+        // this.clock = new THREE.Clock()
 
         this.scene = new THREE.Scene()
         this.scene.background = new THREE.Color('#282323')
@@ -60,7 +63,9 @@ export class LandscapeParallax3dScene {
         const lightHelper = new THREE.DirectionalLightHelper(light)
         this.scene.add(lightHelper)
 
-        // this.controls = new OrbitControls(this.camera, this.renderer.domElement)
+        if (enableOrbitContorlsForDebug) {
+            this.controls = new OrbitControls(this.camera, this.renderer.domElement)
+        }
 
         this.gltfLoader = new GLTFLoader()
 
@@ -84,11 +89,11 @@ export class LandscapeParallax3dScene {
         })
 
         this.renderer.setAnimationLoop(() => {
-            const deltaTime = this.clock.getDelta()
+            // const deltaTime = this.clock.getDelta()
 
             this.bloomEffectRenderer.render()
 
-            // this.controls?.update()
+            this.controls?.update()
         })
 
         scroll(animate(this.camera.position, { y: [-1, 20], x: [-6, -5] }))
