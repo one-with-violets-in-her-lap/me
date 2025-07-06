@@ -71,7 +71,10 @@ const devProjects = await contentApiClient.fetchDevProjects()
     devProjectList.addEventListener('mouseleave', moveSpotlightToDefaultPosition)
 
     function moveSpotlightToDefaultPosition() {
-	animate(spotlight, { left: devProjectList.clientWidth / 2, top: Math.max(document.documentElement.scrollTop, 200) })
+        animate(spotlight, {
+            left: devProjectList.clientWidth / 2,
+            top: Math.max(document.documentElement.scrollTop, 200),
+        })
     }
 </script>
 

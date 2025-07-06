@@ -25,7 +25,7 @@ const { project } = Astro.props
     </p>
 
     <ul class="flex items-center gap-3 max-w-xl flex-wrap">
-         {
+        {
             project.technologiesUsed.map(technology => (
                 <li class="text-sm py-1 px-2 bg-muted/50 rounded-lg">{technology}</li>
             ))
