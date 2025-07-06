@@ -44,6 +44,7 @@ export function LandscapeParallaxScene3d() {
         const landscapeScene = new LandscapeParallax3dScene(canvas.current)
 
         await landscapeScene.initialize()
+        landscapeScene.startIntroAnimation()
 
         return landscapeScene
     }

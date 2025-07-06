@@ -32,10 +32,11 @@ export class LandscapeParallax3dScene {
             0.1,
             1000,
         )
-        this.camera.position.z = 3
+        this.camera.position.z = 1
         this.camera.position.y = -1
         this.camera.position.x = -6
         this.camera.rotation.x = 1
+        this.camera.rotation.y = 1
 
         this.renderer = new THREE.WebGLRenderer({
             canvas,
@@ -82,9 +83,6 @@ export class LandscapeParallax3dScene {
             signal: this.abortController.signal,
         })
 
-        scroll(animate(this.camera.position, { y: [-1, 20], x: [-6, -5] }))
-        scroll(animate(this.camera.rotation, { x: [1, -4] }))
-
         this.renderer.setAnimationLoop(() => {
             const deltaTime = this.clock.getDelta()
 
@@ -92,6 +90,13 @@ export class LandscapeParallax3dScene {
 
             // this.controls?.update()
         })
+
+        scroll(animate(this.camera.position, { y: [-1, 20], x: [-6, -5] }))
+        scroll(animate(this.camera.rotation, { x: [1, -4] }))
+    }
+
+    startIntroAnimation() {
+        animate(this.camera.rotation, { y: 0 }, { duration: 2, type: 'spring' })
     }
 
     dispose() {
