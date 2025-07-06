@@ -18,11 +18,28 @@ const devProjects = await contentApiClient.fetchDevProjects()
         </h1>
 
         <ul id="devProjectList" class="grid gap-3 max-w-4xl relative overflow-hidden">
-            <li
-                id="spotlight"
-                class="absolute top-1/2 left-1/2 bg-foreground/50 blur-[150px] size-30 -translate-y-1/2 -translate-x-1/2"
-            >
+            <li id="spotlight" class="absolute bg-foreground/50 blur-[150px] size-30">
             </li>
+
+            {devProjects.map(project => <DevProjectCard {project} />)}
+            {devProjects.map(project => <DevProjectCard {project} />)}
+            {devProjects.map(project => <DevProjectCard {project} />)}
+            {devProjects.map(project => <DevProjectCard {project} />)}
+            {devProjects.map(project => <DevProjectCard {project} />)}
+            {devProjects.map(project => <DevProjectCard {project} />)}
+            {devProjects.map(project => <DevProjectCard {project} />)}
+            {devProjects.map(project => <DevProjectCard {project} />)}
+            {devProjects.map(project => <DevProjectCard {project} />)}
+            {devProjects.map(project => <DevProjectCard {project} />)}
+            {devProjects.map(project => <DevProjectCard {project} />)}
+            {devProjects.map(project => <DevProjectCard {project} />)}
+            {devProjects.map(project => <DevProjectCard {project} />)}
+            {devProjects.map(project => <DevProjectCard {project} />)}
+            {devProjects.map(project => <DevProjectCard {project} />)}
+            {devProjects.map(project => <DevProjectCard {project} />)}
+            {devProjects.map(project => <DevProjectCard {project} />)}
+            {devProjects.map(project => <DevProjectCard {project} />)}
+            {devProjects.map(project => <DevProjectCard {project} />)}
             {devProjects.map(project => <DevProjectCard {project} />)}
         </ul>
     </main>
@@ -35,23 +52,27 @@ const devProjects = await contentApiClient.fetchDevProjects()
     const devProjectList = getHtmlElementBySelectorOrThrow('#devProjectList')
     const spotlight = getHtmlElementBySelectorOrThrow('#spotlight')
 
+    moveSpotlightToDefaultPosition()
+
     let lastSpotlightMoveAnimation: AnimationPlaybackControlsWithThen | null = null
+
     devProjectList.addEventListener('mousemove', event => {
         lastSpotlightMoveAnimation?.stop()
 
-        lastSpotlightMoveAnimation = animate(
-            spotlight,
-            {
-                left: event.clientX - spotlight.clientWidth / 2,
-                top: event.clientY - spotlight.clientHeight / 2,
-            },
-            { duration: 0.3 },
-        )
+        lastSpotlightMoveAnimation = animate(spotlight, {
+            left: event.clientX - spotlight.clientWidth / 2,
+            top:
+                document.documentElement.scrollTop +
+                event.clientY -
+                spotlight.clientHeight / 2,
+        })
     })
 
-    devProjectList.addEventListener('mouseleave', () => {
-        animate(spotlight, { left: '50%', right: '50%' })
-    })
+    devProjectList.addEventListener('mouseleave', moveSpotlightToDefaultPosition)
+
+    function moveSpotlightToDefaultPosition() {
+	animate(spotlight, { left: devProjectList.clientWidth / 2, top: Math.max(document.documentElement.scrollTop, 200) })
+    }
 </script>
 
 <style>
