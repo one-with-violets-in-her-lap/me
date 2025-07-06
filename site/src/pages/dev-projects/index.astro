@@ -20,7 +20,7 @@ const devProjects = await contentApiClient.fetchDevProjects()
         </h1>
 
         <ul id="devProjectList" class="grid gap-3 max-w-4xl relative overflow-hidden">
-            <li id="spotlight" class="absolute bg-foreground/60 blur-[150px] size-30">
+            <li id="spotlight" class="absolute bg-foreground/80 blur-[150px] size-30">
             </li>
 
             {devProjects.map(project => <DevProjectCard {project} />)}
