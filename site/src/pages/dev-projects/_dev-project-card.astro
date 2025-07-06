@@ -1,4 +1,5 @@
 ---
+import { Button } from '@/components/ui/button'
 import type { DevProject } from '@/lib/content/types'
 
 interface Props {
@@ -8,21 +9,41 @@ interface Props {
 const { project } = Astro.props
 ---
 
-<li class="bg-background/60 border border-foreground/10 rounded-lg px-6 py-7">
-    <header class="flex items-center gap-x-5 mb-4">
+<li
+    class="bg-background/70 border border-foreground/10 rounded-lg px-6 py-7 max-sm:p-4"
+>
+    <header class="flex items-center gap-x-5 mb-4 max-sm:gap-x-3">
         <img
             src={project.logo.asset.url + '?auto=format&w=60&h=60'}
-            class="size-11 object-cover object-center rounded-sm"
+            class="size-11 object-cover object-center rounded-sm max-sm:size-8"
         />
 
-        <h3 class="scroll-m-20 text-2xl font-normal tracking-tight">
+        <h3 class="scroll-m-20 text-2xl font-normal tracking-tight max-sm:text-xl">
             {project.name}
         </h3>
     </header>
 
-    <p class="mb-6">
+    <p class="mb-3 max-sm:text-sm">
         {project.description}
     </p>
+
+    <div class="flex items-center gap-6 mb-6">
+        {
+            project.previewLink && (
+                <a href={project.previewLink} target="_blank">
+                    <Button variant="link" className="px-0 hover:cursor-pointer">
+                        [+] &nbsp; Open
+                    </Button>
+                </a>
+            )
+        }
+
+        <a href={project.sourceCodeLink} target="_blank">
+            <Button variant="link" className="px-0 hover:cursor-pointer">
+                &lt; &gt; &nbsp; Source code
+            </Button>
+        </a>
+    </div>
 
     <ul class="flex items-center gap-3 max-w-xl flex-wrap">
         {

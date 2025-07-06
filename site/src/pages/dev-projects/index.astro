@@ -10,7 +10,9 @@ const devProjects = await contentApiClient.fetchDevProjects()
 <RootLayout>
     <LandscapeParallaxScene3d client:load />
 
-    <main class="main-content-wrapper relative py-13 px-12 min-h-[2500px]">
+    <main
+        class="main-content-wrapper relative py-13 px-12 min-h-[2500px] max-lg:px-8 max-sm:px-5 max-sm:py-7"
+    >
         <h1
             class="scroll-m-20 text-start text-6xl max-w-lg max-xl:text-5xl font-extrabold tracking-tight mb-14 text-balance"
         >
@@ -18,28 +20,9 @@ const devProjects = await contentApiClient.fetchDevProjects()
         </h1>
 
         <ul id="devProjectList" class="grid gap-3 max-w-4xl relative overflow-hidden">
-            <li id="spotlight" class="absolute bg-foreground/50 blur-[150px] size-30">
+            <li id="spotlight" class="absolute bg-foreground/60 blur-[150px] size-30">
             </li>
 
-            {devProjects.map(project => <DevProjectCard {project} />)}
-            {devProjects.map(project => <DevProjectCard {project} />)}
-            {devProjects.map(project => <DevProjectCard {project} />)}
-            {devProjects.map(project => <DevProjectCard {project} />)}
-            {devProjects.map(project => <DevProjectCard {project} />)}
-            {devProjects.map(project => <DevProjectCard {project} />)}
-            {devProjects.map(project => <DevProjectCard {project} />)}
-            {devProjects.map(project => <DevProjectCard {project} />)}
-            {devProjects.map(project => <DevProjectCard {project} />)}
-            {devProjects.map(project => <DevProjectCard {project} />)}
-            {devProjects.map(project => <DevProjectCard {project} />)}
-            {devProjects.map(project => <DevProjectCard {project} />)}
-            {devProjects.map(project => <DevProjectCard {project} />)}
-            {devProjects.map(project => <DevProjectCard {project} />)}
-            {devProjects.map(project => <DevProjectCard {project} />)}
-            {devProjects.map(project => <DevProjectCard {project} />)}
-            {devProjects.map(project => <DevProjectCard {project} />)}
-            {devProjects.map(project => <DevProjectCard {project} />)}
-            {devProjects.map(project => <DevProjectCard {project} />)}
             {devProjects.map(project => <DevProjectCard {project} />)}
         </ul>
     </main>
