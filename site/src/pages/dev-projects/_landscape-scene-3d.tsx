@@ -1,5 +1,6 @@
 import { motion, useScroll } from 'motion/react'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { cn } from '@/lib/utils/classnames'
 import { LandscapeParallax3dScene } from '@/lib/3d/landscape-parallax-scene'
 
 export function LandscapeParallaxScene3d() {
@@ -7,21 +8,29 @@ export function LandscapeParallaxScene3d() {
 
     const canvas = useRef<HTMLCanvasElement>(null)
 
+    const [isLoaded, setIsLoaded] = useState(false)
+
     useEffect(() => {
         let scene: LandscapeParallax3dScene | undefined = undefined
         let unmounted = false
 
         initializeScene().then(landscapeScene => {
             scene = landscapeScene
+            setIsLoaded(true)
 
             if (unmounted) {
-                console.log('Component is already unmounted after landscape scene initialization. Disposing...')
+                console.log(
+                    'Component is already unmounted after landscape scene initialization. Disposing...',
+                )
                 scene.dispose()
+                return
             }
         })
 
         return () => {
-            console.log('Component unmounted. Disposing if scene initialization is completed')
+            console.log(
+                'Component unmounted. Disposing if scene initialization is completed',
+            )
             unmounted = true
             scene?.dispose()
         }
@@ -39,11 +48,15 @@ export function LandscapeParallaxScene3d() {
         return landscapeScene
     }
 
-    return <motion.canvas
-        ref={canvas}
-        style={{ y: scrollY }}
-	transition={{ duration: 0.06 }}
-        className="absolute top-0 left-0 h-screen w-full"
-    ></motion.canvas>
+    return (
+        <motion.canvas
+            ref={canvas}
+            style={{ y: scrollY }}
+            transition={{ duration: 0.06 }}
+            className={cn(
+                'absolute top-0 left-0 h-screen w-full transition-opacity duration-300',
+                isLoaded ? 'opacity-100' : 'opacity-0',
+            )}
+        ></motion.canvas>
+    )
 }
-

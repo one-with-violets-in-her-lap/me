@@ -6,7 +6,7 @@ import { LandscapeParallaxScene3d } from '@/pages/dev-projects/_landscape-scene-
 <RootLayout>
     <LandscapeParallaxScene3d client:load />
 
-    <main class="relative py-13 px-12 mb-[4000px]">
+    <main class="main-content-wrapper relative py-13 px-12 mb-[4000px]">
         <h1
             class="scroll-m-20 text-start text-7xl max-w-lg max-xl:text-5xl font-extrabold tracking-tight mb-4 text-balance h-20"
         >
@@ -20,3 +20,9 @@ import { LandscapeParallaxScene3d } from '@/pages/dev-projects/_landscape-scene-
         </div>
     </main>
 </RootLayout>
+
+<style>
+    .main-content-wrapper {
+        view-transition-name: scale-from-home-page;
+    }
+</style>
