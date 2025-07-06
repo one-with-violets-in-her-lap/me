@@ -1,25 +1,58 @@
 ---
 import RootLayout from '@/layouts/root-layout.astro'
 import { LandscapeParallaxScene3d } from '@/pages/dev-projects/_landscape-scene-3d'
+import DevProjectCard from '@/pages/dev-projects/_dev-project-card.astro'
+import { contentApiClient } from '@/lib/content'
+
+const devProjects = await contentApiClient.fetchDevProjects()
 ---
 
 <RootLayout>
     <LandscapeParallaxScene3d client:load />
 
-    <main class="main-content-wrapper relative py-13 px-12 mb-[4000px]">
+    <main class="main-content-wrapper relative py-13 px-12 min-h-[2500px]">
         <h1
-            class="scroll-m-20 text-start text-7xl max-w-lg max-xl:text-5xl font-extrabold tracking-tight mb-4 text-balance h-20"
+            class="scroll-m-20 text-start text-6xl max-w-lg max-xl:text-5xl font-extrabold tracking-tight mb-14 text-balance"
         >
             Dev @
         </h1>
 
-        <div class="grid grid-cols-[4fr_6fr] gap-6">
-            <div class="bg-foreground/5 flex flex-col gap-y-5"></div>
-
-            <div></div>
-        </div>
+        <ul id="devProjectList" class="grid gap-3 max-w-4xl relative overflow-hidden">
+            <li
+                id="spotlight"
+                class="absolute top-1/2 left-1/2 bg-foreground/50 blur-[150px] size-30 -translate-y-1/2 -translate-x-1/2"
+            >
+            </li>
+            {devProjects.map(project => <DevProjectCard {project} />)}
+        </ul>
     </main>
 </RootLayout>
+
+<script>
+    import { animate, type AnimationPlaybackControlsWithThen } from 'motion/react'
+    import { getHtmlElementBySelectorOrThrow } from '@/lib/utils/get-element-or-throw'
+
+    const devProjectList = getHtmlElementBySelectorOrThrow('#devProjectList')
+    const spotlight = getHtmlElementBySelectorOrThrow('#spotlight')
+
+    let lastSpotlightMoveAnimation: AnimationPlaybackControlsWithThen | null = null
+    devProjectList.addEventListener('mousemove', event => {
+        lastSpotlightMoveAnimation?.stop()
+
+        lastSpotlightMoveAnimation = animate(
+            spotlight,
+            {
+                left: event.clientX - spotlight.clientWidth / 2,
+                top: event.clientY - spotlight.clientHeight / 2,
+            },
+            { duration: 0.3 },
+        )
+    })
+
+    devProjectList.addEventListener('mouseleave', () => {
+        animate(spotlight, { left: '50%', right: '50%' })
+    })
+</script>
 
 <style>
     .main-content-wrapper {

@@ -1,39 +1,6 @@
-import {
-    createClient,
-    type SanityAssetDocument,
-    type SanityDocument,
-    type SanityImageAssetDocument,
-} from '@sanity/client'
+import { createClient } from '@sanity/client'
 import { ContentClientError } from '@/lib/utils/errors'
-
-export interface MyMetadata extends SanityDocument {
-    personStatus: 'sleeping' | 'taking a walk' | 'online' | 'self-loathing'
-    health: number
-    age: number
-}
-
-export interface Post extends SanityDocument {
-    markdownContent: string
-    photo: Photo | null
-    song: Song | null
-}
-
-export interface Photo extends SanityDocument {
-    name: string
-    description: string
-    takenDate: string
-    image: { asset: SanityImageAssetDocument }
-    imageAlternativeText: string
-}
-
-export interface Song extends SanityDocument {
-    name: string
-    description: string
-    secondsDuration: number
-    bitrateKbps: number
-    audioFile: { asset: SanityImageAssetDocument }
-    thumbnail: { asset: SanityAssetDocument }
-}
+import type { DevProject, MyMetadata, Post, Photo, Song } from './types'
 
 const sanityClient = createClient({
     projectId: import.meta.env.SANITY_CMS_PROJECT_ID,
@@ -82,4 +49,19 @@ export const contentApiClient = {
 
         return data[0]
     },
+
+    async fetchDevProjects(): Promise<DevProject[]> {
+        return await sanityClient.fetch(`
+            *[_type == 'dev-project'] {
+              ...,
+              logo {
+                ...,
+                asset ->
+	      }
+            }
+        `)
+    },
 }
+
+export type { Post, DevProject, MyMetadata, Photo, Song }
+
