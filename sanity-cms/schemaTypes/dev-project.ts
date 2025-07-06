@@ -16,6 +16,7 @@ export const devProjectType = defineType({
             title: 'Name',
             type: 'string',
             placeholder: 'AI todo list',
+	    validation: (rule) => rule.required().min(1),
         }),
 
         defineField({
@@ -23,6 +24,7 @@ export const devProjectType = defineType({
             title: 'Description',
             type: 'string',
             placeholder: 'Sign up for our waiting list',
+	    validation: (rule) => rule.required().min(1),
         }),
 
         defineField({
@@ -37,6 +39,7 @@ export const devProjectType = defineType({
             title: 'Source code link',
             placeholder: 'https://github.com/...',
             type: 'string',
+	    validation: (rule) => rule.required().min(1),
         }),
     ],
 })
