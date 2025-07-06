@@ -1,0 +1,68 @@
+---
+import RootLayout from '@/layouts/root-layout.astro'
+import { LandscapeParallaxScene3d } from '@/pages/dev-projects/_landscape-scene-3d'
+import DevProjectCard from '@/pages/dev-projects/_dev-project-card.astro'
+import { contentApiClient } from '@/lib/content'
+
+const devProjects = await contentApiClient.fetchDevProjects()
+---
+
+<RootLayout>
+    <LandscapeParallaxScene3d client:load />
+
+    <main
+        class="main-content-wrapper relative py-13 px-12 min-h-[2500px] max-lg:px-8 max-sm:px-5 max-sm:py-7"
+    >
+        <h1
+            class="scroll-m-20 text-start text-6xl max-w-lg max-xl:text-5xl font-extrabold tracking-tight mb-14 text-balance"
+        >
+            Dev @
+        </h1>
+
+        <ul id="devProjectList" class="grid gap-3 max-w-4xl relative overflow-hidden">
+            <li id="spotlight" class="absolute bg-foreground/80 blur-[150px] size-30">
+            </li>
+
+            {devProjects.map(project => <DevProjectCard {project} />)}
+        </ul>
+    </main>
+</RootLayout>
+
+<script>
+    import { animate, type AnimationPlaybackControlsWithThen } from 'motion/react'
+    import { getHtmlElementBySelectorOrThrow } from '@/lib/utils/get-element-or-throw'
+
+    const devProjectList = getHtmlElementBySelectorOrThrow('#devProjectList')
+    const spotlight = getHtmlElementBySelectorOrThrow('#spotlight')
+
+    moveSpotlightToDefaultPosition()
+
+    let lastSpotlightMoveAnimation: AnimationPlaybackControlsWithThen | null = null
+
+    devProjectList.addEventListener('mousemove', event => {
+        lastSpotlightMoveAnimation?.stop()
+
+        lastSpotlightMoveAnimation = animate(spotlight, {
+            left: event.clientX - spotlight.clientWidth / 2,
+            top:
+                document.documentElement.scrollTop +
+                event.clientY -
+                spotlight.clientHeight / 2,
+        })
+    })
+
+    devProjectList.addEventListener('mouseleave', moveSpotlightToDefaultPosition)
+
+    function moveSpotlightToDefaultPosition() {
+        animate(spotlight, {
+            left: devProjectList.clientWidth / 2,
+            top: Math.max(document.documentElement.scrollTop, 200),
+        })
+    }
+</script>
+
+<style>
+    .main-content-wrapper {
+        view-transition-name: scale-from-home-page;
+    }
+</style>
