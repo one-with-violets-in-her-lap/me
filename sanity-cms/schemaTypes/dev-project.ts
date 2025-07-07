@@ -28,8 +28,9 @@ export const devProjectType = defineType({
         }),
 
         defineField({
-            name: 'technologiesUsed',
-            title: 'Tech used',
+            name: 'tags',
+            title: 'Tags',
+            description: 'Tech used, skills applied, etc.',
             type: 'array',
             of: [{ type: 'string' }],
         }),

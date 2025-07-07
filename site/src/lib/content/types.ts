@@ -37,7 +37,7 @@ export interface DevProject extends SanityDocument {
     name: string
     description: string
     logo: { asset: SanityImageAssetDocument }
-    technologiesUsed: string[]
+    tags: string[]
     sourceCodeLink: string
     previewLink: string
 }
