@@ -2,8 +2,8 @@ import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import { markdownSchema } from 'sanity-plugin-markdown'
-import { sanityStructureConfig } from './structure'
-import { schemaTypes } from './schemaTypes'
+import { sanityStructureConfig } from './src/structure'
+import { schemaTypes } from './src/schemaTypes'
 
 if (
     !process.env.SANITY_STUDIO_PROJECT_ID ||
