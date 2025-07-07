@@ -52,7 +52,7 @@ export const contentApiClient = {
 
     async fetchDevProjects(): Promise<DevProject[]> {
         return await sanityClient.fetch(`
-            *[_type == 'dev-project'] {
+            *[_type == 'dev-project']|order(orderRank) {
               ...,
               logo {
                 ...,

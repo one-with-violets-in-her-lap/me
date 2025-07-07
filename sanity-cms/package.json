@@ -14,6 +14,7 @@
         "lint": "eslint . --fix"
     },
     "dependencies": {
+        "@sanity/orderable-document-list": "^1.3.4",
         "@sanity/vision": "^3.97.1",
         "easymde": "^2.18.0",
         "react": "^18.2.0",
