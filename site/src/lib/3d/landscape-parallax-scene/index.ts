@@ -2,11 +2,11 @@ import * as THREE from 'three'
 import { scroll } from 'motion'
 import { GLTFLoader, OrbitControls } from 'three/examples/jsm/Addons.js'
 import { PinkTree3dObject } from '@/lib/3d//landscape-parallax-scene/pink-tree'
-import { BloomEffectRenderer } from '@/lib/3d//landscape-parallax-scene/bloom-effect-renderer'
+import { BloomEffectRenderer } from '@/lib/3d/landscape-parallax-scene/bloom-effect-renderer'
 import { animate } from 'motion/react'
 
 export class LandscapeParallax3dScene {
-    // private readonly clock: THREE.Clock
+    private readonly clock: THREE.Clock
     private readonly scene: THREE.Scene
     private readonly camera: THREE.PerspectiveCamera
     private readonly renderer: THREE.WebGLRenderer
@@ -24,7 +24,7 @@ export class LandscapeParallax3dScene {
         private readonly canvas: HTMLCanvasElement,
         enableOrbitContorlsForDebug = false,
     ) {
-        // this.clock = new THREE.Clock()
+        this.clock = new THREE.Clock()
 
         this.scene = new THREE.Scene()
         this.scene.background = new THREE.Color('#282323')
@@ -89,7 +89,9 @@ export class LandscapeParallax3dScene {
         })
 
         this.renderer.setAnimationLoop(() => {
-            // const deltaTime = this.clock.getDelta()
+            const deltaTime = this.clock.getDelta()
+
+            this.pinkTree.update(deltaTime)
 
             this.bloomEffectRenderer.render()
 

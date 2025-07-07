@@ -36,11 +36,13 @@ const devProjects = await contentApiClient.fetchDevProjects()
             {devProjects.map(project => <DevProjectCard {project} />)}
         </ul>
 
-	<p class="text-sm pl-1 text-muted-foreground">
-	    -_^*
-            More projects on my
-	    <a href="https://github.com/one-with-violets-in-her-lap">
-                <Button variant="link" className="px-0 hover:cursor-pointer text-foreground">
+        <p class="text-sm pl-1 text-muted-foreground">
+            -_^* More projects on my
+            <a href="https://github.com/one-with-violets-in-her-lap">
+                <Button
+                    variant="link"
+                    className="px-0 hover:cursor-pointer text-foreground"
+                >
                     Github
                 </Button>
             </a>
