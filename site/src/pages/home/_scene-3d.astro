@@ -1,6 +1,6 @@
 <canvas
     id="canvas"
-    class="absolute h-screen w-1/2 top-0 right-0 pointer-events-none max-lg:w-4xl max-sm:w-lg max-sm:-top-10"
+    class="absolute h-screen w-1/2 top-0 right-0 pointer-events-none min-w-2xl max-sm:h-[500px] max-sm:w-[500px] max-sm:-right-40 max-sm:top-20"
 ></canvas>
 
 <script>
@@ -9,5 +9,8 @@
     const canvas = document.querySelector('#canvas') as HTMLCanvasElement
 
     const crowScene = new Crow3dScene(canvas)
-    crowScene.initialize()
+    crowScene
+        .initialize()
+        .then(() => console.log('Crow 3d scene was initialized'))
+        .catch(console.error)
 </script>
