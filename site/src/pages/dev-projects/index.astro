@@ -30,8 +30,7 @@ const devProjects = await contentApiClient.fetchDevProjects()
             id="devProjectList"
             class="grid gap-3 max-w-4xl relative overflow-hidden mb-7"
         >
-            <li id="spotlight" class="absolute bg-foreground/80 blur-[150px] size-30">
-            </li>
+            <li id="spotlight" class="absolute"></li>
 
             {devProjects.map(project => <DevProjectCard {project} />)}
         </ul>
@@ -86,5 +85,20 @@ const devProjects = await contentApiClient.fetchDevProjects()
 <style>
     .main-content-wrapper {
         view-transition-name: scale-from-home-page;
+    }
+
+    #spotlight {
+        background-color: --alpha(var(--color-foreground) / 80%);
+        filter: blur(150px);
+        width: 120px;
+        height: 120px;
+    }
+
+    @supports (-moz-appearance: none) {
+        #spotlight {
+            width: 160px;
+            height: 160px;
+            background-color: --alpha(var(--color-foreground) / 25%);
+        }
     }
 </style>
