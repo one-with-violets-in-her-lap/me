@@ -9,5 +9,8 @@
     const canvas = document.querySelector('#canvas') as HTMLCanvasElement
 
     const crowScene = new Crow3dScene(canvas)
-    crowScene.initialize()
+    crowScene
+        .initialize()
+        .then(() => console.log('Crow 3d scene was initialized'))
+        .catch(console.error)
 </script>
