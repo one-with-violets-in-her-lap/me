@@ -14,7 +14,7 @@ import { lastFmClient } from '@/lib/last-fm'
 export const prerender = false
 Astro.response.headers.set(
     'CDN-Cache-Control',
-    'public, max-age=500, must-revalidate',
+    'public, max-age=1200, must-revalidate',
 )
 
 const [posts, myMetadata, lastTrackListened] = await Promise.all([
