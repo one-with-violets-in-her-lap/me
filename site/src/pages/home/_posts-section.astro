@@ -14,14 +14,46 @@ const sortedPosts = posts.toSorted(
 )
 ---
 
-<section id="posts" class="p-18 max-xl:p-14 max-lg:p-8 max-sm:p-7">
+<section id="posts" class="relative p-18 max-xl:p-14 max-lg:p-8 max-sm:p-7">
     <h2
-        class="scroll-m-20 text-start text-6xl max-w-lg max-xl:text-4xl font-extrabold tracking-tight mb-10 text-balance"
+        class="scroll-m-20 text-start text-6xl max-w-lg max-xl:text-4xl font-extrabold tracking-tight mb-19 text-balance"
     >
         Something from me
     </h2>
 
-    <div class="max-w-3xl">
+    <div id="postsSectionSpotlight" class="spotlight"></div>
+
+    <div class="relative max-w-3xl">
         {sortedPosts.map(post => <PostCard post={post} />)}
     </div>
 </section>
+
+<script>
+    import { animate, inView } from 'motion'
+
+    inView('#postsSectionSpotlight', element => {
+        animate(element, { opacity: 1 }, { duration: 1.8, type: 'spring' })
+    })
+</script>
+
+<style>
+    .spotlight {
+        position: absolute;
+        right: 40px;
+        top: 160px;
+        background-color: --alpha(var(--color-primary-lighter) / 65%);
+        height: 400px;
+        width: 400px;
+        filter: blur(240px);
+	border-radius: 50%;
+        opacity: 0;
+    }
+
+    @supports (-moz-appearance: none) {
+        .spotlight {
+            width: 600px;
+            height: 600px;
+	    background-color: --alpha(var(--color-primary-lighter) / 18%);
+        }
+    }
+</style>
