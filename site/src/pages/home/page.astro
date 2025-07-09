@@ -67,12 +67,6 @@ const [posts, myMetadata, lastTrackListened] = await Promise.all([
                     alt="A hand"
                 />
 
-                <!-- Spotlight effect -->
-                <div
-                    class="pointer-events-none absolute -bottom-0 -left-50 bg-primary-lighter/40 w-[500px] h-[559px] rounded-full blur-[225px] max-lg:top-1/2 max-lg:-translate-y-1/2 max-lg:right-0 max-lg:left-auto"
-                >
-                </div>
-
                 <MyMetadataCard metadata={myMetadata} {lastTrackListened} />
             </div>
         </section>
