@@ -15,7 +15,6 @@ export class Crow3dObject {
 
     async initialize() {
         this.gltfModel = await this.gltfLoader.loadAsync(crowModel)
-        this.gltfModel.scene.scale.set(0.04, 0.04, 0.04)
 
         this.gltfModel.scene.traverse(child => {
             if (child instanceof THREE.Mesh) {
@@ -121,6 +120,7 @@ export class Crow3dObject {
         this.gltfModel.scene.position.y = 4
         this.gltfModel.scene.position.x = 10
         this.gltfModel.scene.position.z = -20
+        this.gltfModel.scene.scale.set(0.04, 0.04, 0.04)
 
         this.mixer = new THREE.AnimationMixer(gltfModel.scene)
         const animation = this.mixer.clipAction(gltfModel.animations[0])
