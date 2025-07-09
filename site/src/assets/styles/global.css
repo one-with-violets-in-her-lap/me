@@ -146,7 +146,7 @@
 }
 
 @custom-variant firefox {
-    @supports (-moz-appearance: none) {
+    @-moz-document url-prefix() {
         @slot;
     }
 }
