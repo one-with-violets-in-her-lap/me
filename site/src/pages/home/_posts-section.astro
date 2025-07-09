@@ -21,7 +21,11 @@ const sortedPosts = posts.toSorted(
         Something from me
     </h2>
 
-    <div id="postsSectionSpotlight" class="spotlight"></div>
+    <div
+        id="postsSectionSpotlight"
+        class="absolute right-10 top-40 bg-primary-lighter/65 size-[400px] blur-[240px] rounded-full opacity-0 firefox:size-[600px] firefox:bg-primary-lighter/20"
+    >
+    </div>
 
     <div class="relative max-w-3xl">
         {sortedPosts.map(post => <PostCard post={post} />)}
@@ -35,25 +39,3 @@ const sortedPosts = posts.toSorted(
         animate(element, { opacity: 1 }, { duration: 1.8, type: 'spring' })
     })
 </script>
-
-<style>
-    .spotlight {
-        position: absolute;
-        right: 40px;
-        top: 160px;
-        background-color: --alpha(var(--color-primary-lighter) / 65%);
-        height: 400px;
-        width: 400px;
-        filter: blur(240px);
-	border-radius: 50%;
-        opacity: 0;
-    }
-
-    @supports (-moz-appearance: none) {
-        .spotlight {
-            width: 600px;
-            height: 600px;
-	    background-color: --alpha(var(--color-primary-lighter) / 18%);
-        }
-    }
-</style>
